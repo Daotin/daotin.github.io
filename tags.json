@@ -1,0 +1,13 @@
+---
+---
+[ 
+    {% for post in site.posts %}
+    {
+        "title":    {{ post.title | jsonify }},
+        "url":      {{ post.url | jsonify }},
+        "publication_date":     {{ post.date | date:"%Y-%m-%d" | jsonify }},
+        "categories":   {{ post.categories | jsonify }},
+        "tags":     {{ post.tags | jsonify }}
+    }
+    {% endfor %}
+]

@@ -18,7 +18,7 @@ var keyword = getQuery('keyword');
 // 请求 API 获得数据
 var tagsData;
 var xhrPosts = new XMLHttpRequest();
-xhrPosts.open('GET', '/posts.json', true);
+xhrPosts.open('GET', '/tags.json', true);
 xhrPosts.onreadystatechange = function() {
     if (xhrPosts.readyState == 4 && xhrPosts.status == 200) {
         tagsData = JSON.parse(xhrPosts.responseText);
