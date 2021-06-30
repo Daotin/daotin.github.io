@@ -4,6 +4,8 @@ nav:
   url: /
 - name: 归档
   url: /archives.html
+- name: 标签
+  url: /tags.html
 - name: 关于
   url: /about.html
 
