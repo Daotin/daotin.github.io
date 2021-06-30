@@ -7,8 +7,8 @@ layout: default
     <img src="{{ site.img }}/{{ page.img }}" class = "bigimg" />
   {% endif %}
   <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-meta">{{ page.date | date: '%Y-%m-%d' }} · {{ page.content | strip_html | strip_newlines | remove: " " | size }} words · 
-  <a href="https://github.com/professordeng/simple/edit/gh-pages/{{ page.path }}">{{ site.data.settings.edit }}</a>
+  <span class="post-meta">{{ page.author }} · {{ page.date | date: '%Y-%m-%d' }} · {{ page.content | strip_html | strip_newlines | remove: " " | size }} words · 
+  <a href="https://github.com/daotin/daotin.github.io/edit/main/{{ page.path }}">{{ site.data.settings.edit }}</a>
   </span>
   
   {{ content }}
