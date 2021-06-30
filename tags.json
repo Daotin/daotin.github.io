@@ -8,6 +8,6 @@
         "publication_date":     {{ post.date | date:"%Y-%m-%d" | jsonify }},
         "categories":   {{ post.categories | jsonify }},
         "tags":     {{ post.tags | jsonify }}
-    }
+    },
     {% endfor %}
 ]
