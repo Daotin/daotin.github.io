@@ -4,20 +4,20 @@ title: 标签
 ---
 
 
-{ % if site.tags.size > 0 %}     
+{% if site.tags.size > 0 %}     
 <ul class="list-unstyled mb-0 row">
-    { % assign sort_tags = site.tags | sort %}
-    { % for tag in sort_tags %}
-    { % assign name = tag | first %}
-    { % assign count = tag | last | size %}
+    {% assign sort_tags = site.tags | sort %}
+    {% for tag in sort_tags %}
+    {% assign name = tag | first %}
+    {% assign count = tag | last | size %}
     <li class="col-auto page-tags-group-item">
-        <a class="page-tags-group-item-btn" href="javascript:void(0)" data-tag-name="{ { name }}">
-            { { name | capitalize }}<span>{ { count }}</span>
+        <a class="page-tags-group-item-btn" href="javascript:void(0)" data-tag-name="{{ name }}">
+            {{ name | capitalize }}<span>{{ count }}</span>
         </a>
     </li>
     { % endfor %}
 </ul>
-{ % endif %}
+{% endif %}
 
 ---
 
