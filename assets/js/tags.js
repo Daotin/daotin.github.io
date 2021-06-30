@@ -22,7 +22,11 @@ xhrPosts.open('GET', '../tags.json', true);
 xhrPosts.onreadystatechange = function() {
     if (xhrPosts.readyState == 4 && xhrPosts.status == 200) {
         console.log('responseText:',xhrPosts.responseText)
-        tagsData = JSON.parse(xhrPosts.responseText);
+        
+        var idx = xhrPosts.responseText.lastIndexOf(',');
+        var str = xhrPosts.responseText.splice(idx, 1);
+        tagsData = JSON.parse(str);
+        
         if(keyword){
             tags(decodeURI(keyword));
         }
