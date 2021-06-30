@@ -1,31 +1,21 @@
 ---
 layout: page
-title: About
+title: 关于我
 comment: true
 ---
 
-我也只是一个在表象中摸索本质的人，如有疑问或想法请 [留言](https://github.com/professordeng/professordeng.github.io/issues/new)。
+90后，绰号「前端队长」，前端工程师。爱书法，爱写作，爱摄影，工具控。座右铭：念念不忘，必有回响。
 
-以下是不同平台下我的账号，感兴趣的可以关注我。
+![](https://user-images.githubusercontent.com/23518990/123214769-37528700-d4fa-11eb-8495-896df9147002.gif)
 
-1. [微信公众号]({{ site.cdn }}/gzh.jpg) ：记录原创文章
-2. [github](https://github.com/professordeng) ：我的知识库
-3. [B 站](https://space.bilibili.com/491275843) ：记录原创视频
-4. [知乎](https://www.zhihu.com/people/professordeng) ：充当人生导师
-5. [微博](https://weibo.com/codeng) ：生活时间线，记录历史时刻和日常感想
-6. [豆瓣](https://www.douban.com/people/professordeng/) ：看影评
-7. [CSDN](https://blog.csdn.net/professordeng) ：写技术文章
-8. [简书](https://www.jianshu.com/u/457d7b6a84ec) ：写技术文章
-9. [Segmentfault](https://segmentfault.com/u/professordeng) ：写技术文章
-10. [牛客网](https://www.nowcoder.com/profile/818052875) ：常见面试题库
-11. [力扣](https://leetcode-cn.com/u/professordeng/) ：我的算法库
-12. [掘金](https://juejin.im/user/5e7b10c0e51d4526ed66dcc7) ：写技术文章
-13. [博客园](https://www.cnblogs.com/professordeng) ：写技术文章
-14. [开源中国](https://my.oschina.net/professordeng) ：写技术文章
-15. [码云](https://gitee.com/professordeng) ：我的国内知识库
-16. [V2EX](https://www.v2ex.com/member/professordeng) ：逛技术论坛
-17. [Ruby China](https://ruby-china.org/professordeng) ：写技术文章
-18. [learnku](https://learnku.com/users/59794) ：写技术文章
-19. [少数派](https://sspai.com/u/professordeng) ：写技术文章
-20. [领英](https://www.linkedin.com/in/professordeng/) ：放简历
-21. [twitter](https://twitter.com/denglate) ：看国外感兴趣的消息
+你也可以从下面遇到我（全网同名）：
+
+## 主战场
+- [微信公众号](https://www.jianguoyun.com/p/DVLba8YQjp3pCBiFhvwD)：万剑归宗处
+- [github](https://github.com/daotin) ：我的武器库
+- [知乎](https://www.zhihu.com/people/daotin) ：花街柳巷
+- [掘金](https://juejin.im/user/2084329777534216) ：招兵买马
+
+## 曾今年少
+- [CSDN](https://blog.csdn.net/lvonve) ：练武处
+- [博客园](https://www.cnblogs.com/lvonve) ：练武处

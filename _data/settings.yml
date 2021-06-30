@@ -1,31 +1,25 @@
 # Customize site navigation
 nav:
-- name: Home
+- name: 首页
   url: /
-- name: Archives
+- name: 归档
   url: /archives.html
-- name: About
+- name: 关于
   url: /about.html
 
 # Available social icons are powered by Font Awesome, so you can use any icon that they offer
 social:
 - icon: github
-  link: https://github.com/professordeng/professordeng.github.io
-- icon: false    # weibo
-  link: https://weibo.com/codeng
+  link: https://github.com/daotin/daotin.github.io
 - icon: false
-  link: https://t.me/jekyll_simple
-- icon: false
-  link: https://zhihu.com/people/professordeng
-- icon: false
-  link: https://linkedin.com/in/professordeng
+  link: https://zhihu.com/people/daotin
   
 # Customize site text
-prev: Older
-next: Newer
+prev: 上一页
+next: 下一页
 
-prev_page: Newer
-next_page: Older
+prev_page: 上一页
+next_page: 下一页
 
 search_tip: Press enter to search
 searching: Searching
