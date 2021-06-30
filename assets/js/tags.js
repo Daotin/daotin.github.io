@@ -15,6 +15,12 @@ function getQuery(key) {
 
 var keyword = getQuery('keyword');
 
+function replaceStr(str, index, char) {
+    const strAry = str.split('');
+    strAry[index] = char;
+    return strAry.join('');
+}
+
 // 请求 API 获得数据
 var tagsData;
 var xhrPosts = new XMLHttpRequest();
@@ -24,7 +30,7 @@ xhrPosts.onreadystatechange = function() {
         console.log('responseText:',xhrPosts.responseText)
         
         var idx = xhrPosts.responseText.lastIndexOf(',');
-        var str = xhrPosts.responseText.splice(idx, 1);
+        var str = replaceStr(xhrPosts.responseText, idx, '');
         tagsData = JSON.parse(str);
         
         if(keyword){
