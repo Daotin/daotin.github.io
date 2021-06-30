@@ -1,0 +1,55 @@
+---
+# Liquid pretreatment required
+---
+
+var keyword = getQuery('keyword');
+
+// 请求 API 获得数据
+var tagsData;
+var xhrPosts = new XMLHttpRequest();
+xhrPosts.open('GET', '/posts.json', true);
+xhrPosts.onreadystatechange = function() {
+    if (xhrPosts.readyState == 4 && xhrPosts.status == 200) {
+        tagsData = JSON.parse(xhrPosts.responseText);
+        if(keyword){
+            tags(decodeURI(keyword));
+        }
+    }
+}
+xhrPosts.send(null);
+
+// 显示 tag 对应文章标题列表并修改 title 等
+function tags (keyword){
+    var title = '标签：' + keyword + ' | Fooleap\'s Blog';
+    var url = '/tags.html?keyword=' + keyword;
+    var tagsTable = document.getElementById('tags-table');
+    tagsTable.style.display = 'table';
+    tagsTable.querySelector('thead tr').innerHTML = '<th colspan=2>以下是标签为“'+keyword+'”的所有文章</th>';
+    var html = '';
+    tagsData.forEach(function(item){
+        if( item.tags.indexOf(keyword) > -1){
+            var date = item.date.slice(0,10).split('-');
+            date = date[0] + ' 年 ' + date[1] + ' 月 ' + date[2] + ' 日';
+            html += '<tr>'+
+                 '<td><time>'+date+'</time></td>'+
+                 '<td><a href="'+item.url+'" title="'+item.title+'">'+item.title+'</a></td>'+
+                 '</tr>';
+        }
+    })
+    tagsTable.getElementsByTagName('tbody')[0].innerHTML = html;
+    document.title = title;
+    history.replaceState({ 
+        "title": title,
+        "url": url 
+    }, title, url);
+}
+
+// 给 tag 链接绑定事件
+var tagLinks = document.getElementsByClassName('post-tags-item');
+var tagCount = tagLinks.length;
+for (var i = 0; i < tagCount; i++){
+    tagLinks[i].addEventListener('click', function(e){
+        tags(e.currentTarget.title);
+        e.preventDefault();
+    }, false);
+}

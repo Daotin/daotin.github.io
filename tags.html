@@ -4,27 +4,24 @@ title: 标签
 ---
 
 
-{% if site.tags.size > 0 %}     
-<ul class="list-unstyled mb-0 row">
-    {% assign sort_tags = site.tags | sort %}
-    {% for tag in sort_tags %}
-    {% assign name = tag | first %}
+{% for tag in site.tags %}
     {% assign count = tag | last | size %}
-    <li class="col-auto page-tags-group-item">
-        <a class="page-tags-group-item-btn" href="javascript:void(0)" data-tag-name="{{ name }}">
-            {{ name | capitalize }}<span>{{ count }}</span>
-        </a>
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
+    {% assign fontsize = count | times: 4 %}
+    {% if count  > 2 %}
+    <a class="post-tags-item" href="{{ page.url }}?keyword={{ tag | first }}" title="{{ tag | first }}" data-count="{{ count }}" style="font-size: {% if fontsize > 24 %}24{% else %}{{ fontsize }}{% endif %}px">{{ tag | first }}</a>
+    {% endif %}
+{% endfor %}
 
----
+<table id="tags-table" style="display: none">
+    <thead>
+        <tr></tr>
+        <tr>
+          <th>日期</th>
+          <th>文章</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
-<ul>
-    {% for tag in site.tags %}
-    <li><a href="tags{{ tag | first }}" title="view all posts"
->       {{ tag | first }} {{ tag | last | size }}</a>
-    </li>
-    {% endfor %}
-</ul>
+<script type="text/javascript" src="{{ site.js }}/tags.js"></script>
