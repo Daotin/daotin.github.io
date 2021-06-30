@@ -21,6 +21,7 @@ var xhrPosts = new XMLHttpRequest();
 xhrPosts.open('GET', '../tags.json', true);
 xhrPosts.onreadystatechange = function() {
     if (xhrPosts.readyState == 4 && xhrPosts.status == 200) {
+        console.log('responseText:',xhrPosts.responseText)
         tagsData = JSON.parse(xhrPosts.responseText);
         if(keyword){
             tags(decodeURI(keyword));
