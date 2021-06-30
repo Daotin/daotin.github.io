@@ -1,15 +1,15 @@
-title: Simple                        # title of the site
-description: A Jekyll Theme          # description of the site
-url: https://professordeng.com       # domain
-baseurl: "/simple"                   # root directory
+title: 前端队长                        # title of the site
+description: Web Frontend JavaScript          # description of the site
+url:      # domain
+baseurl: "/"                   # 网站根路径
 
 # Email address
-email: professordeng@qq.com
+email: daotin@qq.com
 
 # Path of site resources
-img: /simple/assets/img
-css: /simple/assets/css
-js:  /simple/assets/js
+img: /assets/img
+css: /assets/css
+js:  /assets/js
 
 ## Docs: https://pages.github.com/versions/
 plugins:
@@ -22,12 +22,12 @@ plugins:
   - jekyll-paginate
 
 # paginate setting
-paginate: 5
+paginate: 8
 
 # Comment system
 ## Docs: https://github.com/gitalk/gitalk/blob/master/readme.md
 gitalk:
-  enable: true 
+  enable: false 
   clientID: 6e42adfac0bf61e180f6
   clientSecret: d1ed44fc8888bbb2bcafb6bbc819ac9dddca5b71
   repo: simple
@@ -40,7 +40,7 @@ gitalk:
 
 # Google Analytics
 ## Docs: https://analytics.google.com/analytics/web/
-google-analytics: UA-165708741-1
+google-analytics: 
 
 # default layout of the articles in _post
 defaults:
