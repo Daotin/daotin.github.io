@@ -4,10 +4,10 @@ title: 标签
 ---
 
 
-{ %- if site.tags.size > 0 -%}     
+{ % if site.tags.size > 0 %}     
 <ul class="list-unstyled mb-0 row">
     { % assign sort_tags = site.tags | sort %}
-    { %- for tag in sort_tags -%}
+    { % for tag in sort_tags %}
     { % assign name = tag | first %}
     { % assign count = tag | last | size %}
     <li class="col-auto page-tags-group-item">
@@ -15,16 +15,16 @@ title: 标签
             { { name | capitalize }}<span>{ { count }}</span>
         </a>
     </li>
-    { %- endfor -%}
+    { % endfor %}
 </ul>
-{ %- endif -%}
+{ % endif %}
 
 ---
 
 <ul>
-    {% for category in site.categories %}
-    <li><a href="categories{{ category | first }}" title="view all
-posts">{{ category | first }} {{ category | last | size }}</a>
+    {% for tag in site.tags %}
+    <li><a href="tags{{ tag | first }}" title="view all posts"
+>       {{ tag | first }} {{ tag | last | size }}</a>
     </li>
     {% endfor %}
 </ul>
