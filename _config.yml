@@ -31,10 +31,10 @@ gitalk:
   enable: true 
   clientID: 62b3a61a4b0061f1e068
   clientSecret: dea2373cdf4a4afdeb942bd022d4b40abd187cbb
-  repo: simple
+  repo: daotin.github.io
   owner: Daotin
   admin: Daotin
-  id: location.pathname      # The default is location.pathname
+  id: location.href
 #   title: simple   # Issue title
 #   body: simple
   
