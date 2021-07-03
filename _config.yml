@@ -35,8 +35,8 @@ gitalk:
   owner: Daotin
   admin: Daotin
   id: location.pathname      # The default is location.pathname
-  title: simple   # Issue title
-  body: simple
+#   title: simple   # Issue title
+#   body: simple
   
 
 # Google Analytics
