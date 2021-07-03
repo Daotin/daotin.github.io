@@ -41,7 +41,7 @@ gitalk:
 
 # Google Analytics
 ## Docs: https://analytics.google.com/analytics/web/
-google-analytics: 
+google-analytics: G-GKS88BC7VM
 
 # default layout of the articles in _post
 defaults:
