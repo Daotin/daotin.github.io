@@ -34,7 +34,7 @@ gitalk:
   repo: daotin.github.io
   owner: Daotin
   admin: Daotin
-  id: location.href
+  id: location.pathname.slice(-20)
 #   title: simple   # Issue title
 #   body: simple
   
