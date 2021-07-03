@@ -28,13 +28,13 @@ paginate: 8
 # Comment system
 ## Docs: https://github.com/gitalk/gitalk/blob/master/readme.md
 gitalk:
-  enable: false 
-  clientID: 6e42adfac0bf61e180f6
-  clientSecret: d1ed44fc8888bbb2bcafb6bbc819ac9dddca5b71
+  enable: true 
+  clientID: 62b3a61a4b0061f1e068
+  clientSecret: dea2373cdf4a4afdeb942bd022d4b40abd187cbb
   repo: simple
-  owner: professordeng
-  admin: professordeng
-  id: simple      # The default is location.pathname
+  owner: Daotin
+  admin: Daotin
+  id: location.pathname      # The default is location.pathname
   title: simple   # Issue title
   body: simple
   
