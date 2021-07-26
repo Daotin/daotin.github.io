@@ -87,6 +87,27 @@ $(target).animate({"scrollTop": target.offsetTop }, 'normal');
 *   https://stackoverflow.com/questions/62169922/scrollintoview-whole-page-shifting-down
     
 
+### 补充（2021-07-26）
+
+我们知道，`dom.offsetTop` 获取的是距离dom最近的定位的父元素，也就是`offsetParent`，但是如果dom的层级很深（比如是一个树结构中的一个子节点），并且每个父节点都是用了定位怎么办？如何获取到dom与根组件的距离，从而让该dom节点显示在可视区域呢？
+
+解决办法：**只需要循环获取offsetTop即可**。
+
+伪代码如下：
+
+```js
+//得到dom到树形根节点的高度
+let domTop = 0;
+while (dom.className != 'tree-root') { // tree-root是树形结构根节点
+    domTop += dom.offsetTop;
+    dom = dom.offsetParent;
+}
+```
+
+只要当前节点不是根节点，就累加offsetTop值，直到遇到根节点，所有offsetTop的累加值就是当前节点dom到根节点的距离。
+
+
+
 （完）
 
 
