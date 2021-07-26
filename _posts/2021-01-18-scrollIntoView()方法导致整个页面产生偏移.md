@@ -17,7 +17,10 @@ title: scrollIntoView()方法导致整个页面产生偏移
 
 ![图片](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b457e55c51754aa0b949e67723ada381~tplv-k3u1fbpfcp-zoom-1.image)
 
-  
+
+1. 目录
+{:toc}
+
 
 问题分析
 ----
@@ -87,4 +90,4 @@ $(target).animate({"scrollTop": target.offsetTop }, 'normal');
 （完）
 
 
-***以上，如果你看了觉得对你有所帮助，就点个赞叭，这样Daotin也有更新下去的动力，跪谢各位父老乡亲啦~~~ 听说喜欢点赞的人，一个月内都会有好运降临哦 ~~***
+![](https://gitee.com/daotin/img/raw/master/gzh.png)
