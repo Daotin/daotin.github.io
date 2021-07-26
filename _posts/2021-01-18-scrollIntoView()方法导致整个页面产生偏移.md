@@ -49,7 +49,7 @@ target.parentNode.scrollTop = target.offsetTop;
 
 这段代码执行后，就可以让该元素到达父元素顶部的位置。
 
-> 注意事项：offsetTop 不一定是相对于父元素的，如果有很多父元素的话，它是相对于第一个`定位的父元素`的。
+> 注意事项：offsetTop 不一定是相对于父元素的，如果有很多父元素的话，它是相对于第一个（[离自身元素最近的经过定位的父级元素](https://www.cnblogs.com/xiaohuochai/p/5828369.html)）`定位的父元素`的。
 > 
 > 如果第一个父元素未定位（相对`relative`、绝对`absolute`或固定`fixed`），则可能需要将第二行更改为：
 > 
