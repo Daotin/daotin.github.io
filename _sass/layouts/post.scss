@@ -19,6 +19,13 @@
   color: var(--gray-600);
   border-bottom: 1px solid var(--gray-400);
   margin-bottom: 1rem;
+  .post-a {
+    vertical-align: middle;
+  }
+  svg {
+    width: 20px;
+    height: 14px;
+  }
 }
 
 // 目录布局
