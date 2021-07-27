@@ -7,7 +7,7 @@ layout: default
     <img src="{{ site.img }}/{{ page.img }}" class = "bigimg" />
   {% endif %}
   <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-meta">{{ site.author }} · {{ page.date | date: '%Y-%m-%d' }} · {{ page.content | strip_html | strip_newlines | remove: " " | size }} words · 
+  <span class="post-meta">{{ site.author }} · {{ page.date | date: '%Y-%m-%d' }} · {{ page.content | strip_html | strip_newlines | remove: " " | size }} words · {% include post-tags.html %}
   <a href="https://github.com/daotin/daotin.github.io/edit/master/{{ page.path }}">{{ site.data.settings.edit }}</a>
   </span>
   
