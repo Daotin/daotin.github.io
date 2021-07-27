@@ -3,11 +3,42 @@ layout: page
 title: 标签
 ---
 
-<ul>
+---
+layout: page
+permalink: /tags/
+---
+<ul class="tag-cloud">
+{% for tag in site.tags %}
+  <li style="font-size: {{ tag | last | size | times: 100 | divided_by: site.tags.size | plus: 70  }}%">
+    <a href="#{{ tag | first | slugize }}">
+      {{ tag | first }}
+    </a>
+  </li>
+{% endfor %}
+</ul>
+
+<div id="archives">
+{% for tag in site.tags %}
+  <div class="archive-group">
+    {% capture tag_name %}{{ tag | first }}{% endcapture %}
+    <h3 id="#{{ tag_name | slugize }}">{{ tag_name }}</h3>
+    <a name="{{ tag_name | slugize }}"></a>
+    {% for post in site.tags[tag_name] %}
+    <article class="archive-item">
+      <h4><a href="{{ root_url }}{{ post.url }}">{{post.title}}</a></h4>
+    </article>
+    {% endfor %}
+  </div>
+{% endfor %}
+</div>
+
+
+
+<!-- <ul>
 {% for tag in site.tags %}
     {{ tag[0] | escape }} ( {{ tag[1].size }} )
 {% endfor %}
-</ul>
+</ul> -->
 
 
 <!-- <table id="tags-table" style="display: none">
