@@ -3,16 +3,14 @@ layout: page
 title: 标签
 ---
 
-
+<ul>
 {% for tag in site.tags %}
-    {% assign count = tag | last | size %}
-    {% assign fontsize = count | times: 4 %}
-    {% if count  > 2 %}
-    <a class="post-tags-item" href="{{ page.url }}?keyword={{ tag | first }}" title="{{ tag | first }}" data-count="{{ count }}" style="font-size: {% if fontsize > 24 %}24{% else %}{{ fontsize }}{% endif %}px">{{ tag | first }}</a>
-    {% endif %}
+    {{ tag[0] | escape }} ( {{ tag[1].size }} )
 {% endfor %}
+</ul>
 
-<table id="tags-table" style="display: none">
+
+<!-- <table id="tags-table" style="display: none">
     <thead>
         <tr></tr>
         <tr>
@@ -25,4 +23,4 @@ title: 标签
 </table>
 
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<script type="text/javascript" src="{{ site.js }}/tags.js"></script>
+<script type="text/javascript" src="{{ site.js }}/tags.js"></script> -->
