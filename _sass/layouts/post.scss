@@ -28,6 +28,16 @@
   }
 }
 
+.daotin-info {
+  background-color: #e0dfcc;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  border-top: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
+  margin-top: 20px;
+}
+
 // 目录布局
 
 #markdown-toc {
