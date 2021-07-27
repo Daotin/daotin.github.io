@@ -56,8 +56,8 @@
   --spacer-3: calc(var(--spacer) * 3);
 }
 
-@media (min-width: 760px) {  // The unit of min-width must be px
-  :root {
-    --font-size: 20px; 
-  }
-}
+// @media (min-width: 760px) {  // The unit of min-width must be px
+//   :root {
+//     --font-size: 20px; 
+//   }
+// }
