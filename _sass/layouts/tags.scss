@@ -19,5 +19,13 @@
     margin-left: 5px;
 }
 .post-tags {
-    text-align: right;
+    .tag-item {
+        background: #eef3fe;
+        padding: 2px 8px;
+        border-radius: 4px;
+        &:hover {
+            color: #eef3fe;
+            background-color: #5783f7;
+        }
+    }
 }
