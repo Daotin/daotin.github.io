@@ -32,10 +32,14 @@
   background-color: #e0dfcc;
   padding: 4px;
   border-radius: 4px;
-  display: flex;
   border-top: 1px dashed #ccc;
   border-bottom: 1px dashed #ccc;
-  margin-top: 20px;
+  margin-top: 50px;
+  margin-bottom: 8px;
+  padding: 40px 30px;
+  p {
+    margin-bottom: 8px;
+  }
 }
 
 // 目录布局
