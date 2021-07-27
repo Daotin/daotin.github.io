@@ -3,10 +3,6 @@ layout: page
 title: 标签
 ---
 
----
-layout: page
-permalink: /tags/
----
 <ul class="tag-cloud">
 {% for tag in site.tags %}
   <li style="font-size: {{ tag | last | size | times: 100 | divided_by: site.tags.size | plus: 70  }}%">
@@ -31,27 +27,3 @@ permalink: /tags/
   </div>
 {% endfor %}
 </div>
-
-
-
-<!-- <ul>
-{% for tag in site.tags %}
-    {{ tag[0] | escape }} ( {{ tag[1].size }} )
-{% endfor %}
-</ul> -->
-
-
-<!-- <table id="tags-table" style="display: none">
-    <thead>
-        <tr></tr>
-        <tr>
-          <th>日期</th>
-          <th>文章</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<script type="text/javascript" src="{{ site.js }}/tags.js"></script> -->
