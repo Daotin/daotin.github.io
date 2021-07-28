@@ -1,6 +1,7 @@
 ---
-title:  "文字背景对比度contrast ratio的计算公式"
+title: 文字背景对比度contrast ratio的计算公式
 tags: JavaScript CSS
+
 ---
 
 
