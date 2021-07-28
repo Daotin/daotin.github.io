@@ -23,7 +23,7 @@ plugins:
   - jekyll-paginate
 
 # paginate setting
-paginate: 8
+paginate: 10
 
 # Comment system
 ## Docs: https://github.com/gitalk/gitalk/blob/master/readme.md
