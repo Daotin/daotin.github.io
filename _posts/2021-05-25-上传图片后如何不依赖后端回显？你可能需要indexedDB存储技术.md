@@ -1,13 +1,16 @@
 ---
 title: 上传图片后如何不依赖后端回显？你可能需要indexedDB存储技术
+tags: JavaScript
 ---
 
-- toc
+1. xxx
 {:toc}
 
 大家好，我是前端队长Daotin，想要获取更多前端精彩内容，关注我，解锁前端成长新姿势。
 
 > 全文阅读大概需要8分钟，建议先收藏后看。
+
+<!--more-->
 
 
 以下正文：
@@ -175,7 +178,6 @@ Github地址：https://github.com/jakearchibald/idb
 **听说点赞的人，一个月后都会运气爆棚，升职加薪哦~**
 
 
-![my_ip.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2716a4926ed14bfda799f026c8e9e0f0~tplv-k3u1fbpfcp-watermark.image)
 
 
 

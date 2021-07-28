@@ -1,6 +1,10 @@
 ---
 title: git如何清空历史commit？
+tags: Github
 ---
+
+1. xxx
+{:toc}
 
 ## 背景
 
@@ -9,6 +13,8 @@ title: git如何清空历史commit？
 或者是当fork了别人的仓库，但是不想要别人的提交记录的时候，都需要有方法可以快速清空之前的commit记录。
 
 本文就是教你如何使用git指令，快速清空历史commit记录。
+
+<!--more-->
 
 ## 操作步骤
 

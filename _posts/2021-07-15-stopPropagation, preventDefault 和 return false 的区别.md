@@ -1,5 +1,6 @@
 ---
 title: stopPropagation, preventDefault 和 return false 的区别
+tags: JavaScript
 ---
 
 1. 目录
@@ -8,6 +9,8 @@ title: stopPropagation, preventDefault 和 return false 的区别
 大家好，我是前端队长Daotin，想要获取更多前端精彩内容，关注我(全网同名)，解锁前端成长新姿势。
 
 以下正文：
+
+<!--more-->
 
 ## **stopPropagation**
 

@@ -1,11 +1,16 @@
 ---
 title: scrollIntoView()方法导致整个页面产生偏移
+tags: JavaScript
 ---
+
+1. xx
+{:toc}
 
 大家好，我是前端队长Daotin，想要获取更多前端精彩内容，关注我(全网同名)，解锁前端成长新姿势。  
 
-问题描述
-----
+<!--more-->
+
+## 问题描述
 
 今天在做页面 UI 改版的时候发现，我之前使用的是`dom.scrollIntoView();` 使得点击右侧题目编号的时候，让左侧题目滚动到页面可视区域。
 
@@ -22,8 +27,7 @@ title: scrollIntoView()方法导致整个页面产生偏移
 {:toc}
 
 
-问题分析
-----
+## 问题分析
 
 这个时候唯一的可能就是`scrollIntoView`函数引起的问题。
 
@@ -57,8 +61,7 @@ target.parentNode.scrollTop = target.offsetTop;
 > 
 > 参考 offset 相关属性：[Web/06-一文搞懂 DOM 相关距离问题](https://github.com/Daotin/Web/blob/67c2d89dc70848aace9f91213f5d4e1080720c2b/03-JavaScript/03-BOM/06-一文搞懂DOM相关距离问题.md#13offset系列)
 
-解决方法
-----
+## 解决方法
 
 代码如下，加上动画：
 
@@ -77,8 +80,8 @@ $(target).animate({"scrollTop": target.offsetTop }, 'normal');
 
 下面是一个参考例子：[scrollTop animation without jquery](https://stackoverflow.com/questions/21474678/scrolltop-animation-without-jquery)
 
-相关问题
-----
+## 相关问题
+
 
 类似的问题和解决方法如下链接：
 
@@ -109,6 +112,3 @@ while (dom.className != 'tree-root') { // tree-root是树形结构根节点
 
 
 （完）
-
-
-![](https://gitee.com/daotin/img/raw/master/gzh.png)

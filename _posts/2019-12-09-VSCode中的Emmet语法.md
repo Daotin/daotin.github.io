@@ -1,12 +1,9 @@
 ---
-layout: post
 title:  "VSCode中的Emmet语法"
-date:   2019-12-09 15:33:54
-categories: 
 tags: VSCode
 ---
 
-* content
+1. 目录
 {:toc}
 
 ## 删除/修改节点
@@ -17,7 +14,7 @@ tags: VSCode
 
 如果要修改节点，可以使用 `Emmet：更新标签` 指令来同时修改一对开关节点（比如把div标签改为span标签）。
 
-
+<!--more-->
 
 ## 包围节点
 
