@@ -25,6 +25,8 @@ plugins:
 # paginate setting
 paginate: 10
 
+excerpt_separator: "<!--more-->"
+
 # Comment system
 ## Docs: https://github.com/gitalk/gitalk/blob/master/readme.md
 gitalk:
