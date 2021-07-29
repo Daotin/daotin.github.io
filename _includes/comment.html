@@ -13,6 +13,6 @@
     body: '{{ site.gitalk.body }}',
     distractionFreeMode: false
   })
-  consolo.log('gittalk.id: ', md5('{{ site.gitalk.id }}'));
+  console.log('gittalk.id: ', md5('{{ site.gitalk.id }}'));
   gitalk.render('gitalk-container')
 </script>
