@@ -9,7 +9,7 @@
     owner: '{{ site.gitalk.owner }}',
     admin: ['{{ site.gitalk.admin }}'],
     id: md5('{{ site.gitalk.id }}'),
-    title: '{{ site.gitalk.title }}',
+    title: document.title,
     body: '{{ site.gitalk.body }}',
     distractionFreeMode: false
   })
