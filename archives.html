@@ -14,7 +14,7 @@ title: 归档
   <ul class="archives">
       {% for post in group.items %}
 
-        {% assign posts_count = posts_count | plus: 1 %}
+        {% posts_count = posts_count | plus: 1 %}
     
         <li class="archive-item">
           <div class="archive-date">{{ post.date | date: "%m-%d" }}</div>
