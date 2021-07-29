@@ -1,4 +1,5 @@
 <div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 
 <script type="text/jscript">
   var gitalk = new Gitalk({
@@ -7,7 +8,7 @@
     repo: '{{ site.gitalk.repo }}',
     owner: '{{ site.gitalk.owner }}',
     admin: ['{{ site.gitalk.admin }}'],
-    id: decodeURI('{{ site.gitalk.id }}'),
+    id: md5('{{ site.gitalk.id }}'),
     title: '{{ site.gitalk.title }}',
     body: '{{ site.gitalk.body }}',
     distractionFreeMode: false
