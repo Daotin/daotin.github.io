@@ -11,7 +11,7 @@
     id: md5(location.href),
     labels: ['Gitalk'],
     title: document.title,
-    body: `原文地址：' + ${location.href} \n \n 欢迎关注我的公众号： https://gitee.com/daotin/img/raw/master/gzh.png`,
+    body: `原文地址：${location.href} \n \n 欢迎关注我的公众号： https://gitee.com/daotin/img/raw/master/gzh.png`,
     distractionFreeMode: false
   })
   console.log('gittalk.id: ', md5('{{ site.gitalk.id }}'));
