@@ -4,9 +4,6 @@ title: 归档
 ---
 
 {% assign posts_by_year = site.posts | group_by_exp:"post", "post.date | date: '%Y' " %}
-{% assign posts_count = 0 %}
-
-<div class="posts_count">总文章数：{{posts_count}}</div> 
 
 {% for group in posts_by_year %}
 
@@ -14,7 +11,7 @@ title: 归档
   <ul class="archives">
       {% for post in group.items %}
 
-        {% posts_count = posts_count | plus: 1 %}
+        {% assign posts_count = posts_count | plus: 1 %}
     
         <li class="archive-item">
           <div class="archive-date">{{ post.date | date: "%m-%d" }}</div>
@@ -25,3 +22,5 @@ title: 归档
   </ul>
 
 {% endfor %}
+
+<div class="posts_count">总文章数：{{posts_count}}</div> 
