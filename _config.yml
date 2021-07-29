@@ -1,5 +1,5 @@
 title: 前端队长                        # title of the site
-description: Web Frontend JavaScript          # description of the site
+description:         # description of the site
 author: Daotin
 url:      # domain
 baseurl: "/"                   # 网站根路径
