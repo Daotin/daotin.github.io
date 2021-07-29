@@ -2,6 +2,7 @@
   padding: 0 1rem; 
   background-color: var(--container-bg);
   padding-bottom: 1rem;
+  position: relative;
   
   @media (min-width: 38rem) {
     border-radius: var(--border-radius);
@@ -13,4 +14,11 @@
   padding-top: 1rem;
   text-align: center;
   margin-bottom: 1rem;
+}
+
+.posts_count {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    transform: translateX(24px);
 }
