@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daotin.github.io/sitemap.xml
