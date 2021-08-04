@@ -1,5 +1,5 @@
 .post {
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   background-color: var(--container-bg);
   padding-bottom: 1rem;
   
@@ -39,6 +39,7 @@
   padding: 40px 30px;
   p {
     margin-bottom: 8px;
+    margin-top: 8px;
   }
 }
 
@@ -46,14 +47,11 @@
 
 #markdown-toc {
   display: none;
-  font-size: 16px;
-  list-style: none;
+  font-size: 0.8rem;
+  list-style: inside;
   position: fixed;
-  padding-left: 0;
- 
   top: 5rem;
   right: 0;
-   
   width: calc(50vw - 24.5rem);      // All free parts on the lefts
   max-height: calc(100vh - 9rem);   // Remove navigation bar and footer
   @media (min-width: 60rem) {
@@ -62,7 +60,7 @@
   
   &::before {
     content: "TOC";
-    padding-left: .5rem;
+    padding-left: 17px;
     font-size: 1rem;
     font-weight: bold;
   }
@@ -70,6 +68,7 @@
   & ol {
     padding-left: 0;
     margin-bottom: 0;
+    list-style: inherit;
   } 
   
   & li {
@@ -77,16 +76,18 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    
-    margin: 0 .5rem;
-    padding-left: 0;
+    font-weight: bold;
+    padding: 4px 0 4px 20px;
+
+    a {
+        color: var(--gray-800);
+    }
   }
 }
 
 // toc highlight
 .tocactive {
-  font-weight: bold;
-  color: black;
+    color: var(--link-color);
 }
 
 .prev-next {

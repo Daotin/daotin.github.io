@@ -2,7 +2,6 @@
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
-  font-weight: var(--heading-weight);
 //   line-height: 1.25;
   margin-bottom: .5rem;
 }
@@ -12,13 +11,15 @@ h1 {
 }
 
 h2 {
-  margin-top: 1rem;
+  margin-top: 2rem;
   font-size: var(--h2-font-size);
-  border-bottom: 1px solid #dfe2e5;
+  border-bottom: 1px solid #ececec;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
 }
 
 h3 {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-size: var(--h3-font-size);
 }
 
@@ -28,8 +29,10 @@ h4, h5, h6 {
 }
 
 p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+    margin-top: 22px;
+    margin-bottom: 22px;
+    font-size: 15px;
+    line-height: 1.625rem;
 }
 
 ul, ol, dl {
@@ -46,14 +49,14 @@ hr {
 }
 
 blockquote {
-  margin: .8rem 0;    
-  padding: .5rem 1rem;   
-  color: var(--gray-600); 
-  border-left: .25rem solid var(--gray-600); 
-  background-color: #f7f7f7;
-  
-  p:last-child {
-    margin-bottom: 0;
+  margin: 22px 0;    
+  padding: 0 22px;   
+  color: var(--gray-700); 
+  border-left: 4px solid #cbcbcb;
+  background-color: #f8f8f8;
+
+  p {
+    margin: 10px 0;
   }
 }
 
@@ -96,9 +99,13 @@ pre {
 }
 
 code {
-  padding: .2rem .4rem;
-  color: var(--code-color);    
-  border-radius: 3px; 
+  word-break: break-word;
+    border-radius: 2px;
+    overflow-x: auto;
+    background-color: #fff5f5;
+    color: #ff502c;
+    font-size: .87em;
+    padding: .065em .4em;
 }
 
 // Code snippet
