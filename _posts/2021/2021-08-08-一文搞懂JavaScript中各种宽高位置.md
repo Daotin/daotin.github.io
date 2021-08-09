@@ -6,8 +6,6 @@ tags: JavaScript
 1. 目录
 {:toc}
 
-<!--more-->
-
 > 阅读本文大概需要 12 分钟。
 
 ## 问题由来
@@ -17,7 +15,7 @@ tags: JavaScript
 
 比如下面要说的 offset 系列，scroll 系列，client系列的距离，还有事件发生时 offsetX，clientX，pageX 等等的一些距离的总结，可以在我们忘记的时候翻翻一翻这篇文章，然后花最短的时间搞清楚它们之间的区别。
 
-
+<!--more-->
 
 ## 元素视图位置属性
 
