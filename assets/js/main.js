@@ -1,35 +1,40 @@
 ---
 # Liquid pretreatment required
 ---
-    
-    
-if (document.querySelector('#markdown-toc')) {
-    if (document.querySelector('.tocactive')) {  // 首先清除原有高亮
-        document.querySelector('.tocactive').classList.remove('tocactive');
-    }
-}
+
+var subTitles = document.querySelectorAll('.post h2, .post h3'); // 所有标题
+var t = document.documentElement.scrollTop || document.body.scrollTop;
+var top = document.querySelector(".top");  // 获取第一个绑定 top 的元素
 
 // 检测滚动栏
-window.onscroll = function() {
-  // 是否显示回到顶部按钮
-  var t = document.documentElement.scrollTop || document.body.scrollTop;
-  var top = document.querySelector(".top");  // 获取第一个绑定 top 的元素
-  if(t > 300 ) { 
-    top.style.display = "block";
-  } else {
-    top.style.display = "none";
-  }
+window.onscroll = function () {
+    
+    // 是否显示回到顶部按钮
+    if(t > 300 ) { 
+        top.style.display = "block";
+    } else {
+        top.style.display = "none";
+    }
   
-  // 高亮目录
+    // 高亮目录
     if (document.querySelector('#markdown-toc')) {  // 是否生成了目录
       
-        // if (document.querySelector('.tocactive')) {  // 首先清除原有高亮
-        //     document.querySelector('.tocactive').classList.remove('tocactive');
-        // }
-    
-        var subTitles = document.querySelectorAll('.post h2, .post h3'); // 所有标题
-      
-        console.log('subTitles==>', subTitles);
+        if (document.querySelector('.tocactive')) {  // 首先清除原有高亮
+            document.querySelector('.tocactive').classList.remove('tocactive');
+        }
+
+        for (let i = subTitles.length - 1; i >= 0; i--) {
+
+            const eleTop = subTitles[i].offsetTop;
+
+            if (eleTop-100 <= t) {
+                let dom = document.querySelector('#markdown-toc-' + subTitles[i].textContent);
+                dom && dom.classList.add('tocactive');
+                break;
+            }
+        }
+
+        return;
     
         for (var i = 0; i < subTitles.length; i++) {
             // 每个标题距离顶部距离
