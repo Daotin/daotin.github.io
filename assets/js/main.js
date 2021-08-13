@@ -2,13 +2,13 @@
 # Liquid pretreatment required
 ---
 
-var subTitles = document.querySelectorAll('.post h2, .post h3'); // 所有标题
-var top = document.querySelector(".top");  // 获取第一个绑定 top 的元素
 
 // 检测滚动栏
 window.onscroll = function () {
-    
+    var subTitles = document.querySelectorAll('.post h2, .post h3'); // 所有标题
+    var top = document.querySelector(".top");  // 获取第一个绑定 top 的元素
     var t = document.documentElement.scrollTop || document.body.scrollTop;
+
     // 是否显示回到顶部按钮
     if(t > 300 ) { 
         top.style.display = "block";
