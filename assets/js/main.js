@@ -1,6 +1,14 @@
 ---
 # Liquid pretreatment required
 ---
+    
+    
+if (document.querySelector('#markdown-toc')) {
+    if (document.querySelector('.tocactive')) {  // 首先清除原有高亮
+        document.querySelector('.tocactive').classList.remove('tocactive');
+    }
+}
+
 // 检测滚动栏
 window.onscroll = function() {
   // 是否显示回到顶部按钮
@@ -15,9 +23,9 @@ window.onscroll = function() {
   // 高亮目录
     if (document.querySelector('#markdown-toc')) {  // 是否生成了目录
       
-        if (document.querySelector('.tocactive')) {  // 首先清除原有高亮
-            document.querySelector('.tocactive').classList.remove('tocactive');
-        }
+        // if (document.querySelector('.tocactive')) {  // 首先清除原有高亮
+        //     document.querySelector('.tocactive').classList.remove('tocactive');
+        // }
     
         var subTitles = document.querySelectorAll('.post h2, .post h3'); // 所有标题
       
