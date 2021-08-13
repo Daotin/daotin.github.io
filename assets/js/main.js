@@ -3,12 +3,12 @@
 ---
 
 var subTitles = document.querySelectorAll('.post h2, .post h3'); // 所有标题
-var t = document.documentElement.scrollTop || document.body.scrollTop;
 var top = document.querySelector(".top");  // 获取第一个绑定 top 的元素
 
 // 检测滚动栏
 window.onscroll = function () {
     
+    var t = document.documentElement.scrollTop || document.body.scrollTop;
     // 是否显示回到顶部按钮
     if(t > 300 ) { 
         top.style.display = "block";
