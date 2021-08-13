@@ -19,17 +19,26 @@ window.onscroll = function() {
     }
     
     var subTitles = document.querySelectorAll('.post h2, .post h3'); // 所有标题
-    for (var i = 0; i < subTitles.length; i++) {
-      if (subTitles[i].offsetTop + 2 >= t || i === subTitles.length - 1) {         // 可视窗口及下方的第一个标题
-        if(subTitles[i].offsetTop - 2 >= t) {  // 标题上方还有一些内容
-          if( i > 0) {  // 渲染上一个标题
-            document.querySelector('#markdown-toc-' + subTitles[i-1].textContent).classList.add('tocactive');
-          }
-        } else {  // 渲染当前标题
-          document.querySelector('#markdown-toc-' + subTitles[i].textContent).classList.add('tocactive');
-        }
-        break;
-      } 
+    
+      for (var i = 0; i < subTitles.length; i++) {
+          
+          let subTitlesTop = subTitles[i].offsetTop;
+
+          console.log('subTitlesTop==>',subTitlesTop, t);
+
+          
+        if (subTitles[i].offsetTop + 2 >= t || i === subTitles.length - 1) {         // 可视窗口及下方的第一个标题
+            if(subTitles[i].offsetTop - 2 >= t) {  // 标题上方还有一些内容
+                if (i > 0) {  // 渲染上一个标题
+                    let dom = document.querySelector('#markdown-toc-' + subTitles[i - 1].textContent);
+                    dom && dom.classList.add('tocactive');
+                }
+            } else {  // 渲染当前标题
+                let dom = document.querySelector('#markdown-toc-' + subTitles[i].textContent);
+                dom && dom.classList.add('tocactive');
+            }
+            break;
+        } 
     }
   }
 };
