@@ -1,3 +1,3 @@
 个人博客，分享技术与生活。
 
-https://daotin.github.io
+地址：https://daotin.github.io
