@@ -57,29 +57,29 @@
   max-height: calc(100vh - 9rem);   // Remove navigation bar and footer
   overflow: auto;
   
-  // start-自定义滚动条样式
-  &::-webkit-scrollbar {
-    width: 6px;
-    background-color: #eee;
-  }
+  // // start-自定义滚动条样式
+  // &::-webkit-scrollbar {
+  //   width: 6px;
+  //   background-color: #eee;
+  // }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #c1c1c1;
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: #c1c1c1;
 
-    &:hover {
-      background-color: #a8a8a8;
-    }
+  //   &:hover {
+  //     background-color: #a8a8a8;
+  //   }
 
-    &:active {
-      background-color: #787878;
-    }
-  }
+  //   &:active {
+  //     background-color: #787878;
+  //   }
+  // }
 
-  & {
-    scrollbar-width: thin;
-    scrollbar-color: #c1c1c1 #eee;
-  }
-  // end-自定义滚动条样式
+  // & {
+  //   scrollbar-width: thin;
+  //   scrollbar-color: #c1c1c1 #eee;
+  // }
+  // // end-自定义滚动条样式
   
   @media (min-width: 60rem) {
     display: inline-block;
