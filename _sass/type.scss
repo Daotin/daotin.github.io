@@ -33,6 +33,7 @@ p {
     margin-bottom: 22px;
     font-size: 15px;
     line-height: 1.625rem;
+    word-wrap: break-word;
 }
 
 ul, ol, dl {
@@ -101,7 +102,6 @@ pre {
 code {
   word-break: break-word;
     border-radius: 2px;
-    overflow-x: auto;
     background-color: #fff5f5;
     color: #ff502c;
     font-size: .87em;
