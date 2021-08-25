@@ -16,11 +16,19 @@ h2 {
   border-bottom: 1px solid #ececec;
   margin-bottom: 12px;
   padding-bottom: 12px;
+  &::before {
+    content: '# ';
+    color: var(--blue);
+  }
 }
 
 h3 {
   margin-top: 1.5rem;
   font-size: var(--h3-font-size);
+  &::before {
+    content: '## ';
+    color: var(--blue);
+  }
 }
 
 h4, h5, h6 {
