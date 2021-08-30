@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'lxgw';
-  src: url('../fonts/lxgw.woff2') format('woff2');
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,8 +8,7 @@
 
 // root element settings
 html {
-  //font-family: var(--font);
-  font-family: "lxgw", -apple-system,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial;
+  font-family: var(--font);
   font-size: var(--font-size);
   line-height: var(--line-height);
 }

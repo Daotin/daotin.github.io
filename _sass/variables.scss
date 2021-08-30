@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'lxgw';
+  src: url('../fonts/lxgw.woff2') format('woff2');
+}
+
 :root {
   --gray-000: #f8f9fa;
   --gray-100: #f1f3f5;
@@ -26,9 +31,9 @@
   --blue-400: #4dabf7;
   --yellow-100: #fff3bf;
 
-  --font: "lxgw", -apple-system,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial   // 正文字体
-  --font-size: 16px;                              // 字体
-  --line-height: 1.5;                             // 行高
+  --font: "lxgw", -apple-system,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial;
+  --font-size: 16px;
+  --line-height: 1.5;
   
   --body-color: var(--gray-700);
   --body-bg: var(--gray-100);
