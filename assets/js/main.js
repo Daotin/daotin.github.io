@@ -108,10 +108,15 @@ for(var i = 0; i < imgs.length; i++) {
       script.onload = function () {
           console.log('typeit.js加载成功!');
 
-          new TypeIt('#intro-myself', {
-              strings: ['90后，绰号「前端队长」，前端工程师。','爱书法，爱写作，爱摄影，工具控。', '座右铭：念念不忘，必有回响。'],
-              speed: 75,
+          const instance = new TypeIt('#intro-myself', {
+              strings: [
+                '<br>- 我是前端队长Daotin，90后，前端开发工程师，热爱分享~',
+                '- 爱好读书，写作，书法，摄影。坚持长期主义，终生学习者。',
+                '- 座右铭：一生只有一个职业，就是学生。',
+              ],
+              speed: 100,
               loop: false,
+              waitUntilVisible: true,
           }).go();
       };
   }
