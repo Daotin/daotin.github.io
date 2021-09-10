@@ -95,3 +95,24 @@ for(var i = 0; i < imgs.length; i++) {
     window.open(this.src,'_blank');
   })
 }
+
+
+// 加入打字机效果 https://typeitjs.com/
+(function () {
+  let isAboutPage = location.href.endsWith('about.html');
+  if (isAboutPage) {
+      let script = document.createElement('script');
+      script.src = 'https://unpkg.com/typeit@8.0.2/dist/index.umd.js';
+      document.getElementsByTagName('body')[0].appendChild(script);
+
+      script.onload = function () {
+          console.log('typeit.js加载成功!');
+
+          new TypeIt('#intro-myself', {
+              strings: ['90后，绰号「前端队长」，前端工程师。','爱书法，爱写作，爱摄影，工具控。', '座右铭：念念不忘，必有回响。'],
+              speed: 75,
+              loop: false,
+          }).go();
+      };
+  }
+})();

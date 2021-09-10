@@ -4,9 +4,9 @@ title: 关于
 comment: true
 ---
 
-90后，绰号「前端队长」，前端工程师。爱书法，爱写作，爱摄影，工具控。座右铭：念念不忘，必有回响。
+<div id="intro-myself">Hi，你好啊朋友，我先做个自我介绍👋</div>
 
-![](https://user-images.githubusercontent.com/23518990/123214769-37528700-d4fa-11eb-8495-896df9147002.gif)
+<!-- ![](https://user-images.githubusercontent.com/23518990/123214769-37528700-d4fa-11eb-8495-896df9147002.gif) -->
 
 你也可以从下面遇到我（全网同名）：
 
