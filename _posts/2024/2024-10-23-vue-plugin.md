@@ -209,7 +209,7 @@ Vue.use(Loading)
 
 4、然后就可以在vue组件中使用了
 
-```html
+```js
 // 基础用法
 this.$loading.show()  // 显示loading
 this.$loading.hide()  // 隐藏loading

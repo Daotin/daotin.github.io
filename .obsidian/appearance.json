@@ -1,9 +1,10 @@
 {
   "accentColor": "",
-  "cssTheme": "AnuPpuccin",
-  "interfaceFontFamily": "系统字体",
-  "monospaceFontFamily": "JetBrains Mono",
-  "textFontFamily": "霞鹜文楷 屏幕阅读版",
+  "cssTheme": "",
+  "interfaceFontFamily": "",
+  "monospaceFontFamily": "",
+  "textFontFamily": "霞鹜新晰黑 屏幕阅读版",
   "theme": "obsidian",
-  "baseFontSize": 18
+  "baseFontSize": 16,
+  "baseFontSizeAction": true
 }
