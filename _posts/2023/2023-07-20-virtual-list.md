@@ -32,36 +32,30 @@ tags: JavaScript
 
 1.  **创建占位元素**：占位元素是一个空的元素，它的高度等于所有列表项的总高度。占位元素的目的是为了在不渲染所有列表项的情况下，保持滚动条的正确性。
     ```javascript
-    const placeholder = document.getElementById("placeholder");
+    const placeholder = document.getElementById('placeholder');
     placeholder.style.height = `${dataList.length * ITEM_HEIGHT}px`;
     ```
 2.  **计算可见列表项的范围**：通过滚动条的位置和每个列表项的高度，我们可以计算出当前在视口内的列表项的范围（即开始和结束的索引）。
     ```javascript
-    let startIndex = Math.max(
-      0,
-      Math.floor(container.scrollTop / ITEM_HEIGHT) - buffer
-    );
-    let endIndex = Math.min(
-      dataList.length - 1,
-      startIndex + Math.ceil(LIST_HEIGHT / ITEM_HEIGHT) + buffer
-    );
+    let startIndex = Math.max(0, Math.floor(container.scrollTop / ITEM_HEIGHT) - buffer);
+    let endIndex = Math.min(dataList.length - 1, startIndex + Math.ceil(LIST_HEIGHT / ITEM_HEIGHT) + buffer);
     ```
 3.  **渲染可见列表项**：根据计算出的范围，我们可以渲染出相应的列表项。
     ```javascript
     for (let i = startIndex; i < endIndex; i++) {
-      const item = document.createElement("div");
-      item.className = "list-item";
+      const item = document.createElement('div');
+      item.className = 'list-item';
       item.innerText = dataList[i];
       content.appendChild(item);
     }
     ```
-4.  **更新列表内容的位置**：当滚动条滚动时，我们需要更新列表内容的位置，使其始终保持在视口内。这通常通过修改列表内容的 `transform` 来实现。
+4.  **更新列表内容的位置**：当滚动条滚动时，我们需要更新列表内容的位置，使其始终保持在视口内。这通常通过修改列表内容的 `top` 来实现。此时渲染的 dom 多，显示的 dom 少，所以需要偏移来显示正确的内容。
     ```javascript
-    content.style.transform = `translateY(${startIndex * ITEM_HEIGHT}px)`;
+    content.style.top = `${startIndex * ITEM_HEIGHT}px`;
     ```
 5.  **监听滚动事件**：当用户滚动列表时，我们需要重新计算可见列表项的范围，并重新渲染列表内容。
     ```javascript
-    container.addEventListener("scroll", () => {
+    container.addEventListener('scroll', () => {
       renderList();
     });
     ```
@@ -123,7 +117,7 @@ tags: JavaScript
     const dataList = Array.from({ length: 100 }).map((_, i) => `Item ${i}`);
 
     // 获取占位元素，并设置其高度
-    const placeholder = document.getElementById("placeholder");
+    const placeholder = document.getElementById('placeholder');
     placeholder.style.height = `${dataList.length * ITEM_HEIGHT}px`; // 高度等于所有数据项的总高度
 
     /**
@@ -131,30 +125,24 @@ tags: JavaScript
      */
     function renderList() {
       // 输出滚动距离
-      console.log("scrollTop==>", container.scrollTop);
+      console.log('scrollTop==>', container.scrollTop);
       // 缓冲区大小，可以根据需要调整
       const buffer = 5;
       // 计算开始和结束索引
-      let startIndex = Math.max(
-        0,
-        Math.floor(container.scrollTop / ITEM_HEIGHT) - buffer
-      );
-      let endIndex = Math.min(
-        dataList.length - 1,
-        startIndex + Math.ceil(LIST_HEIGHT / ITEM_HEIGHT) + buffer
-      );
+      let startIndex = Math.max(0, Math.floor(container.scrollTop / ITEM_HEIGHT) - buffer);
+      let endIndex = Math.min(dataList.length - 1, startIndex + Math.ceil(LIST_HEIGHT / ITEM_HEIGHT) + buffer);
 
       // 清空列表内容，并设置其位置
-      content.innerHTML = "";
-      content.style.transform = `translateY(${startIndex * ITEM_HEIGHT}px)`;
+      content.innerHTML = '';
+      content.style.top = `${startIndex * ITEM_HEIGHT}px`;
 
       // 输出开始和结束索引
       console.log(startIndex, endIndex);
 
       // 渲染列表项
       for (let i = startIndex; i < endIndex; i++) {
-        const item = document.createElement("div");
-        item.className = "list-item";
+        const item = document.createElement('div');
+        item.className = 'list-item';
         item.innerText = dataList[i];
         content.appendChild(item);
       }
@@ -164,11 +152,11 @@ tags: JavaScript
      * 监听滚动事件
      */
     // 获取列表容器和列表内容
-    const container = document.getElementById("list-container");
-    const content = document.getElementById("content");
+    const container = document.getElementById('list-container');
+    const content = document.getElementById('content');
 
     // 监听列表容器的滚动事件，当滚动时，重新渲染列表
-    container.addEventListener("scroll", () => {
+    container.addEventListener('scroll', () => {
       renderList();
     });
 
@@ -206,7 +194,7 @@ const itemHeights = Array(dataList.length).fill(DEFAULT_ITEM_HEIGHT); // 初始�
 然后，我们获取`placeholder`元素，并根据预估的高度设置占位元素的高度：
 
 ```javascript
-const placeholder = document.getElementById("placeholder");
+const placeholder = document.getElementById('placeholder');
 placeholder.style.height = `${itemHeights.reduce((a, b) => a + b, 0)}px`;
 ```
 
@@ -233,13 +221,11 @@ function renderList() {
   }
 
   // 根据索引渲染列表项
-  content.style.transform = `translateY(${itemHeights
-    .slice(0, startIndex)
-    .reduce((a, b) => a + b, 0)}px)`;
-  content.innerHTML = "";
+  content.style.top = `${itemHeights.slice(0, startIndex).reduce((a, b) => a + b, 0)}px`;
+  content.innerHTML = '';
   for (let i = startIndex; i <= endIndex; i++) {
-    const item = document.createElement("div");
-    item.className = "list-item";
+    const item = document.createElement('div');
+    item.className = 'list-item';
     item.innerText = dataList[i];
     content.appendChild(item);
   }
@@ -261,9 +247,7 @@ function adjustItemHeights(start, end) {
     if (itemHeights[i] !== height) {
       const diff = height - itemHeights[i];
       itemHeights[i] = height;
-      placeholder.style.height = `${
-        parseInt(placeholder.style.height) + diff
-      }px`;
+      placeholder.style.height = `${parseInt(placeholder.style.height) + diff}px`;
     }
   }
 }
@@ -274,10 +258,10 @@ function adjustItemHeights(start, end) {
 最后，我们监听列表容器的滚动事件，当滚动时，就调用 `renderList` 函数进行重新渲染。同时，我们也在页面加载时，调用一次 `renderList` 进行初始渲染。
 
 ```javascript
-const container = document.getElementById("list-container");
-const content = document.getElementById("content");
+const container = document.getElementById('list-container');
+const content = document.getElementById('content');
 
-container.addEventListener("scroll", () => {
+container.addEventListener('scroll', () => {
   renderList();
 });
 
@@ -333,7 +317,7 @@ renderList(); // 初始渲染
     // 初始化每个列表项的高度为预估值
     const itemHeights = Array(dataList.length).fill(DEFAULT_ITEM_HEIGHT);
 
-    const placeholder = document.getElementById("placeholder");
+    const placeholder = document.getElementById('placeholder');
     // 根据预估的高度设置占位元素的高度
     placeholder.style.height = `${itemHeights.reduce((a, b) => a + b, 0)}px`;
 
@@ -361,13 +345,11 @@ renderList(); // 初始渲染
       }
 
       // 根据索引渲染列表项
-      content.style.transform = `translateY(${itemHeights
-        .slice(0, startIndex)
-        .reduce((a, b) => a + b, 0)}px)`;
-      content.innerHTML = "";
+      content.style.top = `${itemHeights.slice(0, startIndex).reduce((a, b) => a + b, 0)}px`;
+      content.innerHTML = '';
       for (let i = startIndex; i <= endIndex; i++) {
-        const item = document.createElement("div");
-        item.className = "list-item";
+        const item = document.createElement('div');
+        item.className = 'list-item';
         item.innerText = dataList[i];
         content.appendChild(item);
       }
@@ -393,18 +375,16 @@ renderList(); // 初始渲染
         if (itemHeights[i] !== height) {
           const diff = height - itemHeights[i];
           itemHeights[i] = height;
-          placeholder.style.height = `${
-            parseInt(placeholder.style.height) + diff
-          }px`;
+          placeholder.style.height = `${parseInt(placeholder.style.height) + diff}px`;
         }
       }
     }
 
-    const container = document.getElementById("list-container");
-    const content = document.getElementById("content");
+    const container = document.getElementById('list-container');
+    const content = document.getElementById('content');
 
     // 监听滚动事件
-    container.addEventListener("scroll", () => {
+    container.addEventListener('scroll', () => {
       renderList();
     });
 
@@ -416,5 +396,5 @@ renderList(); // 初始渲染
 
 ## 参考文档
 
-- [https://github.com/lkangd/infinite-scroll-sample](https://github.com/lkangd/infinite-scroll-sample "https://github.com/lkangd/infinite-scroll-sample")
-- [https://github.com/dwqs/blog/issues/70](https://github.com/dwqs/blog/issues/70 "https://github.com/dwqs/blog/issues/70")
+- [https://github.com/lkangd/infinite-scroll-sample](https://github.com/lkangd/infinite-scroll-sample)
+- [https://github.com/dwqs/blog/issues/70](https://github.com/dwqs/blog/issues/70)
