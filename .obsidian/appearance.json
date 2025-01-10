@@ -1,10 +1,10 @@
 {
   "accentColor": "",
-  "cssTheme": "",
+  "cssTheme": "Blue Topaz",
   "interfaceFontFamily": "",
   "monospaceFontFamily": "",
-  "textFontFamily": "霞鹜新晰黑 屏幕阅读版",
-  "theme": "obsidian",
+  "textFontFamily": "",
+  "theme": "system",
   "baseFontSize": 16,
   "baseFontSizeAction": true
 }
