@@ -1,4 +1,4 @@
-VerletJS.prototype.spider = function (origin) {
+VerletJS.prototype.spider = function (origin, spiderBodyRadius, legLength) {
 	var i
 	var legSeg1Stiffness = 0.99
 	var legSeg2Stiffness = 0.99
@@ -12,8 +12,8 @@ VerletJS.prototype.spider = function (origin) {
 	var composite = new this.Composite()
 	composite.legs = []
 	composite.thorax = new Particle(origin)
-	composite.head = new Particle(origin.add(new Vec2(0, -5)))
-	composite.abdomen = new Particle(origin.add(new Vec2(0, 10)))
+	composite.head = new Particle(origin.add(new Vec2(0, -spiderBodyRadius * 0.25)))
+	composite.abdomen = new Particle(origin.add(new Vec2(0, spiderBodyRadius * 0.5)))
 	composite.particles.push(composite.thorax)
 	composite.particles.push(composite.head)
 	composite.particles.push(composite.abdomen)
@@ -22,8 +22,12 @@ VerletJS.prototype.spider = function (origin) {
 	composite.constraints.push(new AngleConstraint(composite.abdomen, composite.thorax, composite.head, 0.4))
 	// legs
 	for (i = 0; i < 4; ++i) {
-		composite.particles.push(new Particle(composite.particles[0].pos.add(new Vec2(3, (i - 1.5) * 3))))
-		composite.particles.push(new Particle(composite.particles[0].pos.add(new Vec2(-3, (i - 1.5) * 3))))
+		composite.particles.push(
+			new Particle(composite.particles[0].pos.add(new Vec2(legLength * 0.15, (i - 1.5) * legLength * 0.15))),
+		)
+		composite.particles.push(
+			new Particle(composite.particles[0].pos.add(new Vec2(-legLength * 0.15, (i - 1.5) * legLength * 0.15))),
+		)
 		var len = composite.particles.length
 		composite.constraints.push(new DistanceConstraint(composite.particles[len - 2], composite.thorax, legSeg1Stiffness))
 		composite.constraints.push(new DistanceConstraint(composite.particles[len - 1], composite.thorax, legSeg1Stiffness))
@@ -32,12 +36,16 @@ VerletJS.prototype.spider = function (origin) {
 		else if (i == 3) lenCoef = 0.9
 		composite.particles.push(
 			new Particle(
-				composite.particles[len - 2].pos.add(new Vec2(20, (i - 1.5) * 30).normal().mutableScale(20 * lenCoef)),
+				composite.particles[len - 2].pos.add(
+					new Vec2(legLength, (i - 1.5) * legLength * 1.5).normal().mutableScale(legLength * lenCoef),
+				),
 			),
 		)
 		composite.particles.push(
 			new Particle(
-				composite.particles[len - 1].pos.add(new Vec2(-20, (i - 1.5) * 30).normal().mutableScale(20 * lenCoef)),
+				composite.particles[len - 1].pos.add(
+					new Vec2(-legLength, (i - 1.5) * legLength * 1.5).normal().mutableScale(legLength * lenCoef),
+				),
 			),
 		)
 		len = composite.particles.length
@@ -49,12 +57,16 @@ VerletJS.prototype.spider = function (origin) {
 		)
 		composite.particles.push(
 			new Particle(
-				composite.particles[len - 2].pos.add(new Vec2(20, (i - 1.5) * 50).normal().mutableScale(20 * lenCoef)),
+				composite.particles[len - 2].pos.add(
+					new Vec2(legLength, (i - 1.5) * legLength * 2.5).normal().mutableScale(legLength * lenCoef),
+				),
 			),
 		)
 		composite.particles.push(
 			new Particle(
-				composite.particles[len - 1].pos.add(new Vec2(-20, (i - 1.5) * 50).normal().mutableScale(20 * lenCoef)),
+				composite.particles[len - 1].pos.add(
+					new Vec2(-legLength, (i - 1.5) * legLength * 2.5).normal().mutableScale(legLength * lenCoef),
+				),
 			),
 		)
 		len = composite.particles.length
@@ -65,10 +77,14 @@ VerletJS.prototype.spider = function (origin) {
 			new DistanceConstraint(composite.particles[len - 3], composite.particles[len - 1], legSeg3Stiffness),
 		)
 		var rightFoot = new Particle(
-			composite.particles[len - 2].pos.add(new Vec2(20, (i - 1.5) * 100).normal().mutableScale(12 * lenCoef)),
+			composite.particles[len - 2].pos.add(
+				new Vec2(legLength, (i - 1.5) * legLength * 5).normal().mutableScale(legLength * 0.6 * lenCoef),
+			),
 		)
 		var leftFoot = new Particle(
-			composite.particles[len - 1].pos.add(new Vec2(-20, (i - 1.5) * 100).normal().mutableScale(12 * lenCoef)),
+			composite.particles[len - 1].pos.add(
+				new Vec2(-legLength, (i - 1.5) * legLength * 5).normal().mutableScale(legLength * 0.6 * lenCoef),
+			),
 		)
 		composite.particles.push(rightFoot)
 		composite.particles.push(leftFoot)
@@ -149,6 +165,7 @@ VerletJS.prototype.spider = function (origin) {
 	this.composites.push(composite)
 	return composite
 }
+
 VerletJS.prototype.spiderweb = function (origin, radius, segments, depth) {
 	var stiffness = 0.6
 	var tensor = 0.3
@@ -195,8 +212,9 @@ function shuffle(o) {
 	return o
 }
 VerletJS.prototype.crawl = function (leg) {
-	var stepRadius = 100
-	var minStepRadius = 35
+	// 减小蜘蛛迈步的范围，适应更密的蛛网
+	var stepRadius = 70 // 从100减少到70
+	var minStepRadius = 25 // 从35减少到25
 	var spiderweb = this.composites[0]
 	var spider = this.composites[1]
 	var theta = spider.particles[0].pos.angle2(spider.particles[0].pos.add(new Vec2(1, 0)), spider.particles[1].pos)
@@ -243,7 +261,6 @@ VerletJS.prototype.crawl = function (leg) {
 }
 window.onload = function () {
 	var canvas = document.getElementById('scratch')
-	console.log('canvas ==>', canvas)
 	// canvas dimensions
 	var width = parseInt(canvas.style.width)
 	var height = parseInt(canvas.style.height)
@@ -255,8 +272,17 @@ window.onload = function () {
 	// simulation
 	var sim = new VerletJS(width, height, canvas)
 	// entities
-	var spiderweb = sim.spiderweb(new Vec2(width / 2, height / 2), Math.min(width, height) / 2, 20, 7)
-	var spider = sim.spider(new Vec2(width / 2, -300))
+	// 修改这里的系数，调整蜘蛛身体和腿的尺寸比例
+	const spiderBodyRadius = Math.min(width, height) * 0.05 // 保持身体大小不变
+	const legLength = Math.min(width, height) * 0.02 // 将腿长从0.03改为0.05，与身体比例更协调
+	// 增加segments和depth参数，使蛛网更加密集
+	var spiderweb = sim.spiderweb(
+		new Vec2(width / 2, height / 2),
+		Math.min(width, height) / 2,
+		20, // segments从20增加到40，增加圆周方向的密度
+		8, // depth从7增加到14，增加径向方向的密度
+	)
+	var spider = sim.spider(new Vec2(width / 2, -300), spiderBodyRadius, legLength)
 	spiderweb.drawParticles = function (ctx, composite) {
 		var i
 		for (i in composite.particles) {
@@ -270,14 +296,14 @@ window.onload = function () {
 	spider.drawConstraints = function (ctx, composite) {
 		var i
 		ctx.beginPath()
-		ctx.arc(spider.head.pos.x, spider.head.pos.y, 4, 0, 2 * Math.PI)
+		ctx.arc(spider.head.pos.x, spider.head.pos.y, spiderBodyRadius * 0.2, 0, 2 * Math.PI)
 		ctx.fillStyle = '#0693e3'
 		ctx.fill()
 		ctx.beginPath()
-		ctx.arc(spider.thorax.pos.x, spider.thorax.pos.y, 4, 0, 2 * Math.PI)
+		ctx.arc(spider.thorax.pos.x, spider.thorax.pos.y, spiderBodyRadius * 0.2, 0, 2 * Math.PI)
 		ctx.fill()
 		ctx.beginPath()
-		ctx.arc(spider.abdomen.pos.x, spider.abdomen.pos.y, 8, 0, 2 * Math.PI)
+		ctx.arc(spider.abdomen.pos.x, spider.abdomen.pos.y, spiderBodyRadius * 0.4, 0, 2 * Math.PI)
 		ctx.fill()
 		for (i = 3; i < composite.constraints.length; ++i) {
 			var constraint = composite.constraints[i]
@@ -340,4 +366,13 @@ window.onload = function () {
 		requestAnimFrame(loop)
 	}
 	loop()
+	window.addEventListener('resize', function () {
+		const newWidth = parseInt(canvas.style.width)
+		const newHeight = parseInt(canvas.style.height)
+		// 同样更新这里的系数
+		const newSpiderBodyRadius = Math.min(newWidth, newHeight) * 0.05
+		const newLegLength = Math.min(newWidth, newHeight) * 0.02 // 与上面保持一致
+		spider = sim.spider(new Vec2(newWidth / 2, -300), newSpiderBodyRadius, newLegLength)
+		sim.draw()
+	})
 }
