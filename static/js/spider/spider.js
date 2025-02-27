@@ -243,6 +243,7 @@ VerletJS.prototype.crawl = function (leg) {
 }
 window.onload = function () {
 	var canvas = document.getElementById('scratch')
+	console.log('canvas ==>', canvas)
 	// canvas dimensions
 	var width = parseInt(canvas.style.width)
 	var height = parseInt(canvas.style.height)

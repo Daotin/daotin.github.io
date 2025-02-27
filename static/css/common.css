@@ -15,41 +15,41 @@
   src: url("../font/soehne-buch-kursiv.woff2") format("woff2");
 } */
 
-@import url(./font.css);
+/* @import url(./font.css); */
 
 html {
-  color: #333;
-  background: #f4f5f5;
-  scroll-behavior: smooth;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: all 500ms ease;
-  background-image: url('https://framerusercontent.com/images/NPRn2BR0kDn1qMi5KZMZFGNJBnU.png');
-  /* font-family: Consolas, 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif; */
-  /* font-family: 'Cascadia Code', 'PingFang SC', Consolas, Menlo, Courier, sans-serif; */
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; */
-  font-family: PingFang SC, HarmonyOS_Regular, Helvetica Neue, Microsoft YaHei, sans-serif;
+	color: #333;
+	background: #f4f5f5;
+	scroll-behavior: smooth;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transition: all 500ms ease;
+	background-image: url('https://framerusercontent.com/images/NPRn2BR0kDn1qMi5KZMZFGNJBnU.png');
+	/* font-family: Consolas, 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif; */
+	/* font-family: 'Cascadia Code', 'PingFang SC', Consolas, Menlo, Courier, sans-serif; */
+	/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; */
+	font-family: PingFang SC, Helvetica Neue, Microsoft YaHei, sans-serif;
 }
 
 body {
-  max-width: 800px;
-  padding: 0 30px;
-  margin: 0 auto;
-  background-color: #fff;
-  box-shadow: 1px 1px 8px rgb(0 0 0 / 15%);
+	max-width: 800px;
+	padding: 0 30px;
+	margin: 0 auto;
+	background-color: #fff;
+	box-shadow: 1px 1px 8px rgb(0 0 0 / 15%);
 }
 
 * {
-  -webkit-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
 }
 
 ol,
 ul {
-  list-style: none;
+	list-style: none;
 }
 
 p,
@@ -62,55 +62,55 @@ ul,
 ol,
 li,
 blockquote {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 input,
 select,
 textarea {
-  font-family: inherit;
-  outline: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
+	font-family: inherit;
+	outline: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: none;
 }
 
 pre,
 code {
-  /* font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace; */
-  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+	/* font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace; */
+	font-family: Menlo, Monaco, Consolas, Courier New, monospace;
 }
 
 input:-webkit-autofill {
-  /* 自动填充的文本颜色 */
-  -webkit-text-fill-color: #333333 !important;
-  /* -webkit-text-fill-color: var(--text-color) !important; */
+	/* 自动填充的文本颜色 */
+	-webkit-text-fill-color: #333333 !important;
+	/* -webkit-text-fill-color: var(--text-color) !important; */
 
-  /* 方式1：使用内阴影覆盖自动填充的背景色 */
-  /* box-shadow: 0 0 0 1000px #ffffff inset !important; */
+	/* 方式1：使用内阴影覆盖自动填充的背景色 */
+	/* box-shadow: 0 0 0 1000px #ffffff inset !important; */
 
-  /* 方式2：通过延迟一个月，取消自动填充的背景色 */
-  -webkit-transition: background-color 2592000s ease-in-out 0s;
-  transition: background-color 2592000s ease-in-out 0s;
+	/* 方式2：通过延迟一个月，取消自动填充的背景色 */
+	-webkit-transition: background-color 2592000s ease-in-out 0s;
+	transition: background-color 2592000s ease-in-out 0s;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 5px;
-  background-color: transparent;
+	width: 6px;
+	height: 5px;
+	background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ddd;
-  border-radius: 10px;
-  cursor: pointer;
+	background-color: #ddd;
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 /* ::selection {
@@ -119,132 +119,132 @@ input:-webkit-autofill {
 } */
 
 .hover-underline {
-  position: relative;
+	position: relative;
 }
 
 .hover-underline:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: -2px;
-  left: 0;
-  background-color: #1f88ff;
-  visibility: hidden;
-  transform: scaleX(0);
-  transition: transform 200ms ease-in-out;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	bottom: -2px;
+	left: 0;
+	background-color: #1f88ff;
+	visibility: hidden;
+	transform: scaleX(0);
+	transition: transform 200ms ease-in-out;
 }
 
 .hover-underline:hover:after {
-  visibility: visible;
-  transform: scaleX(1);
+	visibility: visible;
+	transform: scaleX(1);
 }
 
 .hover-underline:nth-of-type(6) {
-  color: #1f88ff;
+	color: #1f88ff;
 }
 
 .header {
-  padding: 40px 0 20px 0;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #d8dee4;
+	padding: 40px 0 20px 0;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #d8dee4;
 }
 
 .header .logo {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-right: 10px;
-  user-select: none;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	border-radius: 50%;
+	flex-shrink: 0;
+	margin-right: 10px;
+	user-select: none;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header .menu {
-  margin-right: -9px;
-  text-align: right;
-  user-select: none;
+	margin-right: -9px;
+	text-align: right;
+	user-select: none;
 }
 
 .header .menu a {
-  display: inline-block;
-  font-size: 18px;
-  margin: 4px 9px;
-  white-space: nowrap;
-  user-select: auto;
+	display: inline-block;
+	font-size: 18px;
+	margin: 4px 9px;
+	white-space: nowrap;
+	user-select: auto;
 }
 
 .footer {
-  padding: 15px 0;
-  font-size: 14px;
-  text-align: center;
-  border-top: 1px solid #d8dee4;
-  margin-top: 40px;
+	padding: 15px 0;
+	font-size: 14px;
+	text-align: center;
+	border-top: 1px solid #d8dee4;
+	margin-top: 40px;
 }
 
 .footer a {
-  text-decoration: underline;
-  color: #000000;
-  padding: 0 4px;
-  white-space: nowrap;
+	text-decoration: underline;
+	color: #000000;
+	padding: 0 4px;
+	white-space: nowrap;
 }
 
 #to-top {
-  position: fixed;
-  z-index: 99;
-  right: 16px;
-  bottom: 12px;
-  width: 34px;
-  height: 34px;
-  cursor: pointer;
-  border-radius: 10%;
-  background-color: #000000;
-  opacity: 0.45;
-  overflow: hidden;
-  transform: translateY(66px);
-  transition: transform 200ms ease-in-out;
+	position: fixed;
+	z-index: 99;
+	right: 16px;
+	bottom: 12px;
+	width: 34px;
+	height: 34px;
+	cursor: pointer;
+	border-radius: 10%;
+	background-color: #000000;
+	opacity: 0.45;
+	overflow: hidden;
+	transform: translateY(66px);
+	transition: transform 200ms ease-in-out;
 }
 
 #to-top.show {
-  transform: translateY(0);
+	transform: translateY(0);
 }
 
 #to-top > span {
-  display: block;
-  width: 50%;
-  height: 50%;
-  position: absolute;
-  left: 50%;
-  top: 13px;
-  transform: translateX(-50%) rotate(45deg);
+	display: block;
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	left: 50%;
+	top: 13px;
+	transform: translateX(-50%) rotate(45deg);
 }
 
 #to-top > span:first-child {
-  background-color: #ffffff;
+	background-color: #ffffff;
 }
 
 #to-top > span:last-child {
-  background-color: #000000;
-  transform: translate(-50%, 16%) rotate(45deg);
+	background-color: #000000;
+	transform: translate(-50%, 16%) rotate(45deg);
 }
 
 @media screen and (max-width: 560px) {
-  .header {
-    padding: 35px 0 20px 0;
-    justify-content: flex-start;
-  }
+	.header {
+		padding: 35px 0 20px 0;
+		justify-content: flex-start;
+	}
 
-  .header .menu {
-    margin-right: -2px;
-    text-align: left;
-  }
+	.header .menu {
+		margin-right: -2px;
+		text-align: left;
+	}
 
-  .header .menu a {
-    margin: 2px 5px;
-    font-size: 15px;
-  }
+	.header .menu a {
+		margin: 2px 5px;
+		font-size: 15px;
+	}
 }
