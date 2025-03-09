@@ -22,7 +22,7 @@ npx husky-init && npm install
 # 3、去.husky/pre-commit中删除 npm test
 
 # 4、添加commit-msg hook（如果失败，需要升级npm）
-npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 
 # 5、安装commitlint
 npm install --save-dev @commitlint/config-conventional @commitlint/cli
@@ -83,7 +83,7 @@ fs.writeFileSync(preCommitPath, updatedPreCommitContent);
 
 // 4. 添加 commit-msg hook
 executeCommand(
-  "npx husky add .husky/commit-msg 'npx --no -- commitlint --edit \"$1\"'"
+  "npx husky add .husky/commit-msg 'npx --no-install commitlint --edit \"$1\"'"
 );
 
 // 5. 安装 commitlint
@@ -522,7 +522,7 @@ npx husky-init && npm install
 **3、添加其他 hook（比如 commit-msg hook）**
 
 ```jsx
-npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
 
 错误提示：
