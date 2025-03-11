@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收益率换算器</title>
+    <style>
+        :root {
+            --primary-color: #0071e3;
+            --secondary-color: #34c759;
+            --danger-color: #ff3b30;
+            --background-color: #f5f5f7;
+            --card-bg: #ffffff;
+            --text-color: #1d1d1f;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;  /* 缩小内容界面 */
+            border-radius: var(--border-radius);
+            background-color: var(--card-bg);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin: 0 auto;  /* 居中显示 */
+        }
+        
+        .header {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            padding: 24px 30px 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .header p {
+            opacity: 0.7;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        .content {
+            padding: 24px;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f7;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background-color: #f5f5f7;
+        }
+        
+        .input-wrapper input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.2);
+            background-color: white;
+        }
+        
+        .input-wrapper .suffix {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #86868b;
+            font-weight: 500;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #0077ED;
+            transform: translateY(-1px);
+        }
+        
+        .result-card {
+            background-color: #f5f5f7;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+        }
+        
+        .result-card.positive {
+            background-color: rgba(52, 199, 89, 0.1);
+            border-left: 3px solid var(--secondary-color);
+        }
+        
+        .result-card.negative {
+            background-color: rgba(255, 59, 48, 0.1);
+            border-left: 3px solid var(--danger-color);
+        }
+        
+        .result-card .label {
+            font-size: 0.9rem;
+            color: #86868b;
+            margin-bottom: 4px;
+        }
+        
+        .result-card .value {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .result-card.positive .value {
+            color: var(--secondary-color);
+        }
+        
+        .result-card.negative .value {
+            color: var(--danger-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>收益率换算器</h1>
+            <p>在日涨跌幅与年化收益之间轻松转换</p>
+        </div>
+        
+        <div class="content">
+            <div class="tab-container">
+                <div class="tab active" id="daily-to-annual-tab">日涨跌幅 → 年化收益</div>
+                <div class="tab" id="annual-to-daily-tab">年化收益 → 日涨跌幅</div>
+            </div>
+            
+            <!-- 日涨跌幅转年化收益表单 -->
+            <div id="daily-to-annual-form">
+                <div class="input-group">
+                    <label for="daily-return">日涨跌幅</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="daily-return" placeholder="输入日涨跌幅" step="0.01">
+                        <span class="suffix">%</span>
+                    </div>
+                </div>
+                
+                <button class="btn" id="calculate-annual-btn">计算年化收益</button>
+                
+                <!-- 在计算按钮下方放置年化收益率显示 -->
+                <div class="result-card" id="annual-return-card">
+                    <div class="label">年化收益率</div>
+                    <div class="value" id="annual-return-value">--</div>
+                </div>
+            </div>
+            
+            <!-- 年化收益转日涨跌幅表单 -->
+            <div id="annual-to-daily-form" style="display: none;">
+                <div class="input-group">
+                    <label for="annual-return">年化收益率</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="annual-return" placeholder="输入年化收益率" step="0.1">
+                        <span class="suffix">%</span>
+                    </div>
+                </div>
+                
+                <button class="btn" id="calculate-daily-btn">计算日涨跌幅</button>
+                
+                <!-- 在计算按钮下方放置日涨跌幅显示 -->
+                <div class="result-card" id="daily-return-card">
+                    <div class="label">日涨跌幅</div>
+                    <div class="value" id="daily-return-value">--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 切换表单元素
+            const dailyToAnnualTab = document.getElementById('daily-to-annual-tab');
+            const annualToDailyTab = document.getElementById('annual-to-daily-tab');
+            const dailyToAnnualForm = document.getElementById('daily-to-annual-form');
+            const annualToDailyForm = document.getElementById('annual-to-daily-form');
+            
+            // 日涨跌幅表单元素
+            const dailyReturnInput = document.getElementById('daily-return');
+            const calculateAnnualBtn = document.getElementById('calculate-annual-btn');
+            const annualReturnValue = document.getElementById('annual-return-value');
+            const annualReturnCard = document.getElementById('annual-return-card');
+            
+            // 年化收益表单元素
+            const annualReturnInput = document.getElementById('annual-return');
+            const calculateDailyBtn = document.getElementById('calculate-daily-btn');
+            const dailyReturnValue = document.getElementById('daily-return-value');
+            const dailyReturnCard = document.getElementById('daily-return-card');
+            
+            // 切换表单
+            dailyToAnnualTab.addEventListener('click', function() {
+                dailyToAnnualTab.classList.add('active');
+                annualToDailyTab.classList.remove('active');
+                dailyToAnnualForm.style.display = 'block';
+                annualToDailyForm.style.display = 'none';
+            });
+            
+            annualToDailyTab.addEventListener('click', function() {
+                annualToDailyTab.classList.add('active');
+                dailyToAnnualTab.classList.remove('active');
+                annualToDailyForm.style.display = 'block';
+                dailyToAnnualForm.style.display = 'none';
+            });
+            
+            // 计算年化收益率
+            function calculateAnnualReturn(dailyReturn) {
+                // 将百分比转换为小数
+                const dailyReturnDecimal = dailyReturn / 100;
+                
+                // 计算年化收益率 [(1 + 日收益率)^365 - 1] * 100
+                const annualReturn = (Math.pow(1 + dailyReturnDecimal, 365) - 1) * 100;
+                
+                return annualReturn;
+            }
+            
+            // 计算日涨跌幅
+            function calculateDailyReturn(annualReturn) {
+                // 将百分比转换为小数
+                const annualReturnDecimal = annualReturn / 100;
+                
+                // 计算日涨跌幅 [(1 + 年化收益率)^(1/365) - 1] * 100
+                const dailyReturn = (Math.pow(1 + annualReturnDecimal, 1/365) - 1) * 100;
+                
+                return dailyReturn;
+            }
+            
+            // 设置结果卡片样式
+            function setResultCardStyle(card, value) {
+                card.classList.remove('positive', 'negative');
+                
+                if (value > 0) {
+                    card.classList.add('positive');
+                } else if (value < 0) {
+                    card.classList.add('negative');
+                }
+            }
+            
+            // 日涨跌幅计算按钮事件
+            calculateAnnualBtn.addEventListener('click', function() {
+                const dailyReturn = parseFloat(dailyReturnInput.value);
+                
+                if (isNaN(dailyReturn)) {
+                    alert('请输入有效的日涨跌幅');
+                    return;
+                }
+                
+                const annualReturn = calculateAnnualReturn(dailyReturn);
+                
+                // 显示结果
+                annualReturnValue.textContent = `${annualReturn.toFixed(2)}%`;
+                
+                // 设置样式
+                setResultCardStyle(annualReturnCard, annualReturn);
+            });
+            
+            // 年化收益计算按钮事件
+            calculateDailyBtn.addEventListener('click', function() {
+                const annualReturn = parseFloat(annualReturnInput.value);
+                
+                if (isNaN(annualReturn)) {
+                    alert('请输入有效的年化收益率');
+                    return;
+                }
+                
+                const dailyReturn = calculateDailyReturn(annualReturn);
+                
+                // 显示结果
+                dailyReturnValue.textContent = `${dailyReturn.toFixed(4)}%`;
+                
+                // 设置样式
+                setResultCardStyle(dailyReturnCard, dailyReturn);
+            });
+            
+            // 绑定回车键事件
+            dailyReturnInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    calculateAnnualBtn.click();
+                }
+            });
+            
+            annualReturnInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    calculateDailyBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
