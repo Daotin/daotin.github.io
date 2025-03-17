@@ -4,8 +4,8 @@ title: 首页
 ---
 
 <canvas
-	id="scratch"
-	style="position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; width: 400px; height: 400px"></canvas>
+	id="particle-canvas"
+	style="position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; width: 100%; height: 100%"></canvas>
 
 <div class="page page-index">
 	{% for post in site.posts -%} {%- capture post_year %}{{ post.date | date: "%Y" }}{% endcapture -%} {%- capture
@@ -45,5 +45,4 @@ title: 首页
 	})
 </script>
 
-<script src="{{ site.baseurl }}/static/js/spider/jq.js"></script>
-<script src="{{ site.baseurl }}/static/js/spider/spider.js"></script>
+<script src="{{ site.baseurl }}/static/js/particle.js"></script>

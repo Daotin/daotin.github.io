@@ -17,9 +17,34 @@
 
 /* @import url(./font.css); */
 
+:root {
+	--primary-color: #3182ce;
+	--text-color: #333333;
+	--text-secondary: #666666;
+	--text-tertiary: #888888;
+	--bg-color: #ffffff;
+	--bg-secondary: #f8f9fa;
+	--border-color: #e2e8f0;
+	--hover-color: #2c5282;
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05);
+	--content-width: 830px;
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--spacing-xs: 4px;
+	--spacing-sm: 8px;
+	--spacing-md: 16px;
+	--spacing-lg: 24px;
+	--spacing-xl: 32px;
+	--spacing-2xl: 48px;
+	--transition-normal: all 0.3s ease;
+}
+
 html {
-	color: #333;
-	background: #f4f5f5;
+	color: var(--text-color);
+	background: var(--bg-secondary);
 	scroll-behavior: smooth;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
@@ -27,29 +52,32 @@ html {
 	text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	transition: all 500ms ease;
+	transition: var(--transition-normal);
+	/* 背景可以换成更细微的纹理或者去掉 */
 	background-image: url('https://framerusercontent.com/images/NPRn2BR0kDn1qMi5KZMZFGNJBnU.png');
-	/* font-family: Consolas, 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif; */
-	/* font-family: 'Cascadia Code', 'PingFang SC', Consolas, Menlo, Courier, sans-serif; */
-	/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; */
-	font-family: PingFang SC, Helvetica Neue, Microsoft YaHei, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial,
+		sans-serif;
 }
 
 body {
-	max-width: 800px;
-	padding: 0 30px;
+	max-width: var(--content-width);
+	padding: 0 var(--spacing-xl);
 	margin: 0 auto;
-	background-color: #fff;
-	box-shadow: 1px 1px 8px rgb(0 0 0 / 15%);
+	background-color: var(--bg-color);
+	box-shadow: var(--shadow-md);
+	line-height: 1.6;
 }
 
 * {
 	-webkit-tap-highlight-color: transparent;
+	box-sizing: border-box;
 }
 
 ol,
 ul {
 	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 p,
@@ -69,6 +97,7 @@ blockquote {
 a {
 	color: inherit;
 	text-decoration: none;
+	transition: var(--transition-normal);
 }
 
 input,
@@ -80,21 +109,17 @@ textarea {
 	-moz-appearance: none;
 	appearance: none;
 	border: none;
+	border-radius: var(--radius-sm);
 }
 
 pre,
 code {
-	/* font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace; */
-	font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+	font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 input:-webkit-autofill {
 	/* 自动填充的文本颜色 */
-	-webkit-text-fill-color: #333333 !important;
-	/* -webkit-text-fill-color: var(--text-color) !important; */
-
-	/* 方式1：使用内阴影覆盖自动填充的背景色 */
-	/* box-shadow: 0 0 0 1000px #ffffff inset !important; */
+	-webkit-text-fill-color: var(--text-color) !important;
 
 	/* 方式2：通过延迟一个月，取消自动填充的背景色 */
 	-webkit-transition: background-color 2592000s ease-in-out 0s;
@@ -102,37 +127,42 @@ input:-webkit-autofill {
 }
 
 ::-webkit-scrollbar {
-	width: 6px;
-	height: 5px;
+	width: 8px;
+	height: 8px;
 	background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #ddd;
+	background-color: #cbd5e0;
 	border-radius: 10px;
 	cursor: pointer;
 }
 
-/* ::selection {
-  background-color: #1f88ff;
-  color: #ffffff;
-} */
+::-webkit-scrollbar-thumb:hover {
+	background-color: #a0aec0;
+}
+
+::selection {
+	background-color: var(--primary-color);
+	color: #ffffff;
+}
 
 .hover-underline {
 	position: relative;
+	display: inline-block;
 }
 
 .hover-underline:after {
 	content: '';
 	position: absolute;
 	width: 100%;
-	height: 1px;
+	height: 2px;
 	bottom: -2px;
 	left: 0;
-	background-color: #1f88ff;
+	background-color: var(--primary-color);
 	visibility: hidden;
 	transform: scaleX(0);
-	transition: transform 200ms ease-in-out;
+	transition: transform 0.2s ease-in-out;
 }
 
 .hover-underline:hover:after {
@@ -140,28 +170,34 @@ input:-webkit-autofill {
 	transform: scaleX(1);
 }
 
-.hover-underline:nth-of-type(6) {
-	color: #1f88ff;
+.hover-underline:hover {
+	color: var(--primary-color);
 }
 
 .header {
-	padding: 40px 0 20px 0;
-	margin-bottom: 20px;
+	padding: var(--spacing-2xl) 0 var(--spacing-lg) 0;
+	margin-bottom: var(--spacing-lg);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 1px solid #d8dee4;
+	border-bottom: 1px solid var(--border-color);
 }
 
 .header .logo {
-	width: 40px;
-	height: 40px;
+	width: 48px;
+	height: 48px;
 	cursor: pointer;
 	border-radius: 50%;
 	flex-shrink: 0;
-	margin-right: 10px;
+	margin-right: var(--spacing-md);
 	user-select: none;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+	box-shadow: var(--shadow-md);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header .logo:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-lg);
 }
 
 .header .menu {
@@ -172,55 +208,75 @@ input:-webkit-autofill {
 
 .header .menu a {
 	display: inline-block;
-	font-size: 18px;
-	margin: 4px 9px;
+	font-size: 16px;
+	font-weight: 500;
+	margin: var(--spacing-xs) var(--spacing-md);
 	white-space: nowrap;
 	user-select: auto;
+	padding: var(--spacing-xs) var(--spacing-sm);
+	border-radius: var(--radius-md);
+	transition: var(--transition-normal);
+}
+
+.header .menu a:hover {
+	background-color: var(--bg-secondary);
+	color: var(--primary-color);
 }
 
 .footer {
-	padding: 15px 0;
+	padding: var(--spacing-lg) 0;
 	font-size: 14px;
 	text-align: center;
-	border-top: 1px solid #d8dee4;
-	margin-top: 40px;
+	border-top: 1px solid var(--border-color);
+	margin-top: var(--spacing-2xl);
+	color: var(--text-tertiary);
 }
 
 .footer a {
-	text-decoration: underline;
-	color: #000000;
-	padding: 0 4px;
+	color: var(--text-tertiary);
+	padding: 0 var(--spacing-xs);
 	white-space: nowrap;
+	transition: var(--transition-normal);
+}
+
+.footer a:hover {
+	color: var(--primary-color);
+	text-decoration: underline;
 }
 
 #to-top {
 	position: fixed;
 	z-index: 99;
-	right: 16px;
-	bottom: 12px;
-	width: 34px;
-	height: 34px;
+	right: 20px;
+	bottom: 20px;
+	width: 40px;
+	height: 40px;
 	cursor: pointer;
-	border-radius: 10%;
-	background-color: #000000;
-	opacity: 0.45;
+	border-radius: var(--radius-lg);
+	background-color: var(--primary-color);
+	opacity: 0.8;
 	overflow: hidden;
 	transform: translateY(66px);
-	transition: transform 200ms ease-in-out;
+	transition: transform 0.2s ease-in-out, opacity 0.2s ease;
+	box-shadow: var(--shadow-md);
 }
 
 #to-top.show {
 	transform: translateY(0);
 }
 
+#to-top:hover {
+	opacity: 1;
+}
+
 #to-top > span {
 	display: block;
-	width: 50%;
-	height: 50%;
+	width: 40%;
+	height: 40%;
 	position: absolute;
 	left: 50%;
-	top: 13px;
-	transform: translateX(-50%) rotate(45deg);
+	top: 45%;
+	transform: translate(-50%, -50%) rotate(45deg);
 }
 
 #to-top > span:first-child {
@@ -228,23 +284,27 @@ input:-webkit-autofill {
 }
 
 #to-top > span:last-child {
-	background-color: #000000;
-	transform: translate(-50%, 16%) rotate(45deg);
+	background-color: var(--primary-color);
+	transform: translate(-50%, 25%) rotate(45deg);
 }
 
 @media screen and (max-width: 560px) {
 	.header {
-		padding: 35px 0 20px 0;
-		justify-content: flex-start;
+		padding: var(--spacing-xl) 0 var(--spacing-lg) 0;
+		flex-direction: column;
+		align-items: flex-start;
 	}
 
 	.header .menu {
-		margin-right: -2px;
+		margin-right: 0;
+		margin-top: var(--spacing-md);
 		text-align: left;
+		display: flex;
+		flex-wrap: wrap;
 	}
 
 	.header .menu a {
-		margin: 2px 5px;
+		margin: var(--spacing-xs) var(--spacing-xs) var(--spacing-xs) 0;
 		font-size: 15px;
 	}
 }
