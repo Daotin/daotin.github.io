@@ -1,28 +1,212 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  {% include head.html -%}
-  <body ondragstart="return false;">
-    {% include header.html -%}
-    <div class="page page-post">
-      <h1 class="title" id="{{ page.title }}">{{ page.title }}</h1>
-      {% if page.date %}
-      <div class="subtitle">
-        {{site.author}} 于 {{ page.date | date: "%Y-%m-%d" }} 发布
-        <a
-          class="hover-underline"
-          href="https://github.com/Daotin/daotin.github.io/edit/master/{{ page.path }}"
-          target="_blank"
-          >编辑</a
-        >
-      </div>
-      {% endif %}
-      <div class="post">{{ content }}</div>
-      {% if site.extAdsense -%}
-      <div class="adsense" style="overflow: hidden">
-        {% include ext-adsense.html -%}
-      </div>
-      {% endif %}
-    </div>
-    {% include footer.html -%} {% include script.html -%}
-  </body>
+	{% include head.html -%}
+	<body ondragstart="return false;">
+		{% include header.html -%}
+		<div class="page page-post">
+			<h1 class="title" id="{{ page.title }}">{{ page.title }}</h1>
+			{% if page.date %}
+			<div class="subtitle">
+				<span>
+					<i class="fas fa-user"></i>
+					{{site.author}}
+				</span>
+				<span>
+					<i class="fas fa-calendar-alt"></i>
+					{{ page.date | date: "%Y-%m-%d" }}
+				</span>
+				{% if page.tags %}
+				<span class="post-tags">
+					<i class="fas fa-tags"></i>
+					{% for tag in page.tags %}
+					<a href="{{site.baseurl}}/pages/tags.html#{{ tag }}" class="post-tag">{{ tag }}</a>
+					{% unless forloop.last %}, {% endunless %} {% endfor %}
+				</span>
+				{% endif %}
+				<a
+					class="edit-link"
+					href="https://github.com/Daotin/daotin.github.io/edit/master/{{ page.path }}"
+					target="_blank">
+					<i class="fas fa-edit"></i>
+					编辑
+				</a>
+			</div>
+			{% endif %}
+
+			<div class="post-container">
+				<div class="post">{{ content }}</div>
+
+				<!-- 文章结束标记 -->
+				<div class="post-end-mark">
+					<i class="fas fa-feather-alt"></i>
+				</div>
+
+				<!-- 文章导航 -->
+				<div class="post-navigation">
+					{% if page.previous %}
+					<a href="{{ site.baseurl }}{{ page.previous.url }}" class="prev">
+						<i class="fas fa-chevron-left"></i>
+						<span>{{ page.previous.title }}</span>
+					</a>
+					{% endif %} {% if page.next %}
+					<a href="{{ site.baseurl }}{{ page.next.url }}" class="next">
+						<span>{{ page.next.title }}</span>
+						<i class="fas fa-chevron-right"></i>
+					</a>
+					{% endif %}
+				</div>
+			</div>
+
+			{% if site.extAdsense -%}
+			<div class="adsense" style="overflow: hidden">{% include ext-adsense.html -%}</div>
+			{% endif %}
+		</div>
+
+		<!-- 添加回到顶部按钮 -->
+		<div id="to-top" style="display: none">
+			<i class="fas fa-arrow-up"></i>
+		</div>
+
+		{% include footer.html -%} {% include script.html -%}
+
+		<script>
+			// 回到顶部按钮控制
+			window.addEventListener('scroll', function () {
+				var toTop = document.getElementById('to-top')
+				if (window.scrollY > 300) {
+					toTop.style.display = 'flex'
+					toTop.classList.add('show')
+				} else {
+					toTop.classList.remove('show')
+				}
+			})
+
+			document.getElementById('to-top').addEventListener('click', function () {
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth',
+				})
+			})
+
+			// 添加图片标题支持
+			document.addEventListener('DOMContentLoaded', function () {
+				var images = document.querySelectorAll('.post img')
+				images.forEach(function (img) {
+					if (img.alt && img.alt !== 'line' && !img.parentNode.classList.contains('image-container')) {
+						var container = document.createElement('div')
+						container.className = 'image-container'
+						img.parentNode.insertBefore(container, img)
+						container.appendChild(img)
+
+						var caption = document.createElement('div')
+						caption.className = 'image-caption'
+						caption.textContent = img.alt
+						container.appendChild(caption)
+					}
+				})
+			})
+		</script>
+
+		<style>
+			/* 文章页面的额外样式 */
+			.post-container {
+				position: relative;
+			}
+
+			.post-tags a {
+				font-weight: var(--font-weight-medium);
+				transition: color 0.2s ease;
+			}
+
+			.post-tags a:hover {
+				color: var(--primary-color);
+			}
+
+			.edit-link {
+				margin-left: auto;
+				color: var(--primary-color);
+			}
+
+			.post-end-mark {
+				text-align: center;
+				margin: var(--spacing-2xl) 0;
+				color: var(--primary-color);
+				font-size: 1.5rem;
+				opacity: 0.5;
+			}
+
+			.post-navigation {
+				display: flex;
+				justify-content: space-between;
+				margin: var(--spacing-2xl) 0 var(--spacing-xl);
+				border-top: 1px solid var(--border-color);
+				padding-top: var(--spacing-lg);
+			}
+
+			.post-navigation a {
+				display: flex;
+				align-items: center;
+				max-width: 45%;
+				border: none;
+				color: var(--text-tertiary);
+				transition: all 0.3s ease;
+				position: relative;
+				padding: var(--spacing-sm) var(--spacing-md);
+				border-radius: var(--radius-md);
+				background-color: var(--bg-secondary);
+			}
+
+			.post-navigation a span {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			.post-navigation a:hover {
+				color: var(--primary-color);
+				background-color: rgba(213, 63, 140, 0.05);
+				border: none;
+				transform: translateY(-2px);
+			}
+
+			.post-navigation .prev i {
+				margin-right: var(--spacing-sm);
+			}
+
+			.post-navigation .next {
+				margin-left: auto;
+			}
+
+			.post-navigation .next i {
+				margin-left: var(--spacing-sm);
+			}
+
+			.image-container {
+				text-align: center;
+				margin: var(--spacing-xl) 0;
+			}
+
+			@media screen and (max-width: 560px) {
+				.subtitle {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: var(--spacing-xs);
+				}
+
+				.subtitle .edit-link {
+					margin-left: 0;
+					margin-top: var(--spacing-xs);
+				}
+
+				.post-navigation {
+					flex-direction: column;
+					gap: var(--spacing-md);
+				}
+
+				.post-navigation a {
+					max-width: 100%;
+				}
+			}
+		</style>
+	</body>
 </html>

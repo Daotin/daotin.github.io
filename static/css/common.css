@@ -17,29 +17,89 @@
 
 /* @import url(./font.css); */
 
+/* 引入Google Fonts - 注意实际使用时可能需要本地化这些字体 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
 :root {
-	--primary-color: #3182ce;
-	--text-color: #333333;
-	--text-secondary: #666666;
-	--text-tertiary: #888888;
+	/* 主色调 - 洋红与深紫的组合 */
+	--primary-color: #d53f8c;
+	--primary-darker: #b83280;
+	--primary-lighter: #ed64a6;
+
+	/* 高对比度强调色 - 青色 */
+	--accent-color: #0bc5ea;
+	--accent-darker: #00a3c4;
+	--accent-lighter: #4fd1c5;
+
+	/* 中性色调 */
+	--neutral-900: #1a202c;
+	--neutral-800: #2d3748;
+	--neutral-700: #4a5568;
+	--neutral-600: #718096;
+	--neutral-500: #a0aec0;
+	--neutral-400: #cbd5e0;
+	--neutral-300: #e2e8f0;
+	--neutral-200: #edf2f7;
+	--neutral-100: #f7fafc;
+
+	/* 文本颜色 */
+	--text-color: var(--neutral-800);
+	--text-secondary: var(--neutral-700);
+	--text-tertiary: var(--neutral-600);
+	--text-muted: var(--neutral-500);
+
+	/* 背景颜色 */
 	--bg-color: #ffffff;
-	--bg-secondary: #f8f9fa;
-	--border-color: #e2e8f0;
-	--hover-color: #2c5282;
-	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05);
-	--content-width: 830px;
+	--bg-secondary: var(--neutral-100);
+	--bg-tertiary: var(--neutral-200);
+
+	/* 边框颜色 */
+	--border-color: var(--neutral-300);
+	--border-light: var(--neutral-200);
+
+	/* 阴影 */
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05);
+	--shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+	--shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+	/* 尺寸 */
+	--content-width: 860px;
+
+	/* 圆角 */
 	--radius-sm: 4px;
-	--radius-md: 8px;
-	--radius-lg: 12px;
+	--radius-md: 6px;
+	--radius-lg: 10px;
+	--radius-xl: 16px;
+
+	/* 间距 */
 	--spacing-xs: 4px;
 	--spacing-sm: 8px;
 	--spacing-md: 16px;
 	--spacing-lg: 24px;
 	--spacing-xl: 32px;
 	--spacing-2xl: 48px;
+	--spacing-3xl: 64px;
+
+	/* 过渡 */
+	--transition-fast: all 0.2s ease;
 	--transition-normal: all 0.3s ease;
+	--transition-slow: all 0.5s ease;
+
+	/* 排版 */
+	--font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+	--font-serif: 'Noto Serif SC', Georgia, Cambria, 'Times New Roman', Times, serif;
+	--font-mono: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+	/* 字重 */
+	--font-weight-light: 300;
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+	--font-weight-black: 900;
 }
 
 html {
@@ -53,10 +113,11 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	transition: var(--transition-normal);
-	/* 背景可以换成更细微的纹理或者去掉 */
-	background-image: url('https://framerusercontent.com/images/NPRn2BR0kDn1qMi5KZMZFGNJBnU.png');
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial,
-		sans-serif;
+	font-family: var(--font-sans);
+	font-size: 16px;
+	line-height: 1.8;
+	/* 使用精细的纹理背景，增加质感 */
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmNWY1ZjUiPjwvcmVjdD4KPC9zdmc+');
 }
 
 body {
@@ -64,8 +125,10 @@ body {
 	padding: 0 var(--spacing-xl);
 	margin: 0 auto;
 	background-color: var(--bg-color);
-	box-shadow: var(--shadow-md);
+	box-shadow: var(--shadow-lg);
 	line-height: 1.6;
+	border-left: 1px solid var(--border-light);
+	border-right: 1px solid var(--border-light);
 }
 
 * {
@@ -114,7 +177,7 @@ textarea {
 
 pre,
 code {
-	font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+	font-family: var(--font-mono);
 }
 
 input:-webkit-autofill {
@@ -133,13 +196,13 @@ input:-webkit-autofill {
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #cbd5e0;
+	background-color: var(--neutral-400);
 	border-radius: 10px;
 	cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #a0aec0;
+	background-color: var(--neutral-500);
 }
 
 ::selection {
@@ -162,7 +225,7 @@ input:-webkit-autofill {
 	background-color: var(--primary-color);
 	visibility: hidden;
 	transform: scaleX(0);
-	transition: transform 0.2s ease-in-out;
+	transition: transform 0.25s ease-in-out;
 }
 
 .hover-underline:hover:after {
@@ -176,16 +239,29 @@ input:-webkit-autofill {
 
 .header {
 	padding: var(--spacing-2xl) 0 var(--spacing-lg) 0;
-	margin-bottom: var(--spacing-lg);
+	margin-bottom: var(--spacing-2xl);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	border-bottom: 1px solid var(--border-color);
+	position: relative;
+}
+
+/* 在header底部添加一个装饰性的色条 */
+.header:after {
+	content: '';
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	right: 0;
+	height: 3px;
+	background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+	opacity: 0.7;
 }
 
 .header .logo {
-	width: 48px;
-	height: 48px;
+	width: 50px;
+	height: 50px;
 	cursor: pointer;
 	border-radius: 50%;
 	flex-shrink: 0;
@@ -193,10 +269,12 @@ input:-webkit-autofill {
 	user-select: none;
 	box-shadow: var(--shadow-md);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	border: 2px solid white;
+	padding: 2px;
 }
 
 .header .logo:hover {
-	transform: translateY(-2px);
+	transform: translateY(-3px) rotate(5deg);
 	box-shadow: var(--shadow-lg);
 }
 
@@ -209,27 +287,58 @@ input:-webkit-autofill {
 .header .menu a {
 	display: inline-block;
 	font-size: 16px;
-	font-weight: 500;
+	font-weight: var(--font-weight-medium);
 	margin: var(--spacing-xs) var(--spacing-md);
 	white-space: nowrap;
 	user-select: auto;
 	padding: var(--spacing-xs) var(--spacing-sm);
 	border-radius: var(--radius-md);
 	transition: var(--transition-normal);
+	position: relative;
 }
 
 .header .menu a:hover {
-	background-color: var(--bg-secondary);
 	color: var(--primary-color);
 }
 
+.header .menu a:after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	bottom: -2px;
+	left: 0;
+	background-color: var(--primary-color);
+	visibility: hidden;
+	transform: scaleX(0);
+	transition: transform 0.25s ease-in-out;
+}
+
+.header .menu a:hover:after {
+	visibility: visible;
+	transform: scaleX(1);
+}
+
 .footer {
-	padding: var(--spacing-lg) 0;
+	padding: var(--spacing-xl) 0;
 	font-size: 14px;
 	text-align: center;
 	border-top: 1px solid var(--border-color);
-	margin-top: var(--spacing-2xl);
+	margin-top: var(--spacing-3xl);
 	color: var(--text-tertiary);
+	position: relative;
+}
+
+/* 在footer顶部添加一个装饰性的色条 */
+.footer:before {
+	content: '';
+	position: absolute;
+	top: -4px;
+	left: 0;
+	right: 0;
+	height: 3px;
+	background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+	opacity: 0.7;
 }
 
 .footer a {
@@ -249,16 +358,19 @@ input:-webkit-autofill {
 	z-index: 99;
 	right: 20px;
 	bottom: 20px;
-	width: 40px;
-	height: 40px;
+	width: 44px;
+	height: 44px;
 	cursor: pointer;
-	border-radius: var(--radius-lg);
-	background-color: var(--primary-color);
-	opacity: 0.8;
+	border-radius: 50%;
+	background: linear-gradient(145deg, var(--primary-color), var(--primary-darker));
+	opacity: 0.9;
 	overflow: hidden;
 	transform: translateY(66px);
 	transition: transform 0.2s ease-in-out, opacity 0.2s ease;
-	box-shadow: var(--shadow-md);
+	box-shadow: var(--shadow-lg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #to-top.show {
@@ -267,25 +379,12 @@ input:-webkit-autofill {
 
 #to-top:hover {
 	opacity: 1;
+	transform: translateY(-3px);
 }
 
-#to-top > span {
-	display: block;
-	width: 40%;
-	height: 40%;
-	position: absolute;
-	left: 50%;
-	top: 45%;
-	transform: translate(-50%, -50%) rotate(45deg);
-}
-
-#to-top > span:first-child {
-	background-color: #ffffff;
-}
-
-#to-top > span:last-child {
-	background-color: var(--primary-color);
-	transform: translate(-50%, 25%) rotate(45deg);
+#to-top i {
+	color: white;
+	font-size: 18px;
 }
 
 @media screen and (max-width: 560px) {

@@ -1,37 +1,60 @@
 .list-post > h2 {
-	font-size: 18px;
-	font-weight: 700;
+	font-size: 22px;
+	font-weight: var(--font-weight-black);
 	padding: var(--spacing-md) 0;
-	color: var(--text-secondary);
+	color: var(--neutral-900);
 	display: flex;
 	align-items: center;
-	margin-bottom: var(--spacing-sm);
+	margin-bottom: var(--spacing-md);
+	font-family: var(--font-serif);
+	letter-spacing: 0.5px;
+	position: relative;
 }
 
 .list-post > h2:after {
 	content: '';
 	flex-grow: 1;
 	height: 1px;
-	background-color: var(--border-color);
+	background: linear-gradient(90deg, var(--primary-color), transparent);
 	margin-left: var(--spacing-md);
+	opacity: 0.5;
 }
 
 .list-post ul {
 	box-sizing: border-box;
 	padding-left: var(--spacing-md);
-	margin-bottom: var(--spacing-xl);
+	margin-bottom: var(--spacing-2xl);
 }
 
 .list-post li {
 	display: flex;
 	align-items: center;
 	padding: var(--spacing-xs) 0;
-	transition: transform 0.2s ease;
+	transition: all 0.3s ease;
 	border-radius: var(--radius-md);
+	margin-bottom: var(--spacing-sm);
+	position: relative;
 }
 
 .list-post li:hover {
-	transform: translateX(4px);
+	transform: translateX(8px);
+}
+
+/* 添加文章列表的悬停装饰 */
+.list-post li:before {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 2px;
+	left: -10px;
+	background: var(--primary-color);
+	transform: scaleY(0);
+	transition: transform 0.3s ease;
+	border-radius: 2px;
+}
+
+.list-post li:hover:before {
+	transform: scaleY(1);
 }
 
 .list-post li .date {
@@ -39,7 +62,16 @@
 	font-size: 14px;
 	flex-shrink: 0;
 	margin-right: var(--spacing-lg);
-	font-weight: 500;
+	font-weight: var(--font-weight-medium);
+	font-family: var(--font-sans);
+	position: relative;
+}
+
+.list-post li .date:after {
+	content: '·';
+	position: absolute;
+	right: -10px;
+	color: var(--primary-color);
 }
 
 .list-post li .title {
@@ -54,6 +86,12 @@
 .list-post li .title a {
 	font-size: 16px;
 	transition: color 0.2s ease;
+	font-weight: var(--font-weight-medium);
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .list-post li:hover .title a {
@@ -69,22 +107,24 @@
 }
 
 .list-post li .tags a {
-	font-size: 13px;
+	font-size: 12px;
 	color: var(--text-tertiary);
 	margin-left: 4px;
 	background-color: var(--bg-secondary);
-	padding: 2px 8px;
-	border-radius: var(--radius-sm);
-	transition: all 0.2s ease;
+	padding: 1px 8px;
+	border-radius: 12px;
+	transition: all 0.3s ease;
+	font-weight: var(--font-weight-medium);
 }
 
 .list-post li .tags a:hover {
 	background-color: var(--primary-color);
 	color: white;
+	transform: translateY(-2px);
 }
 
 html.dark .list-post li .tags a {
-	background-color: rgba(96, 165, 250, 0.1);
+	background-color: rgba(246, 135, 179, 0.1);
 	color: var(--text-tertiary);
 }
 
@@ -94,39 +134,68 @@ html.dark .list-post li .tags a:hover {
 }
 
 .list-category h2 {
-	font-size: 18px;
-	font-weight: 700;
+	font-size: 22px;
+	font-weight: var(--font-weight-black);
 	padding: var(--spacing-md) 0;
-	color: var(--text-secondary);
+	color: var(--neutral-900);
 	display: flex;
 	align-items: center;
+	margin-bottom: var(--spacing-md);
+	font-family: var(--font-serif);
+	letter-spacing: 0.5px;
 }
 
 .list-category h2:after {
 	content: '';
 	flex-grow: 1;
 	height: 1px;
-	background-color: var(--border-color);
+	background: linear-gradient(90deg, var(--primary-color), transparent);
 	margin-left: var(--spacing-md);
+	opacity: 0.5;
 }
 
 .list-category div {
-	padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-sm);
+	padding: var(--spacing-sm) 0 var(--spacing-xl) var(--spacing-md);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-sm);
 }
 
 .list-category div a {
-	margin: var(--spacing-xs) var(--spacing-sm);
+	margin: var(--spacing-xs) 0;
 	white-space: nowrap;
 	font-size: 15px;
 	display: inline-block;
-	border-bottom: 1px solid var(--text-tertiary);
-	padding: 2px 4px;
-	transition: all 0.2s ease;
+	padding: 2px 12px 4px 12px;
+	transition: all 0.3s ease;
+	background-color: var(--bg-secondary);
+	border-radius: 30px;
+	color: var(--text-secondary);
+	font-weight: var(--font-weight-medium);
+	position: relative;
+	overflow: hidden;
 }
 
 .list-category div a:hover {
-	color: var(--primary-color);
-	border-color: var(--primary-color);
+	color: #fff;
+	background-color: var(--primary-color);
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-sm);
+}
+
+.list-category div a:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.2);
+	transition: width 0.3s ease;
+}
+
+.list-category div a:hover:before {
+	width: 100%;
 }
 
 .page-search #search-input {
@@ -137,24 +206,27 @@ html.dark .list-post li .tags a:hover {
 	padding: var(--spacing-md);
 	border-radius: var(--radius-md);
 	background-color: var(--bg-secondary);
-	margin-bottom: var(--spacing-lg);
+	margin-bottom: var(--spacing-xl);
 	transition: all 0.3s ease;
+	font-family: var(--font-sans);
 }
 
 .page-search #search-input:focus {
 	border-color: var(--primary-color);
-	box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
+	box-shadow: 0 0 0 3px rgba(213, 63, 140, 0.2);
+	outline: none;
 }
 
 .page-search h1 {
-	padding: var(--spacing-md) 0;
+	padding: var(--spacing-lg) 0;
 	display: flex;
 	align-items: center;
+	font-family: var(--font-serif);
 }
 
 .page-search h1 span {
-	font-size: 18px;
-	font-weight: 700;
+	font-size: 20px;
+	font-weight: var(--font-weight-bold);
 	color: var(--text-secondary);
 }
 
@@ -167,10 +239,21 @@ html.dark .list-post li .tags a:hover {
 }
 
 .page-search .list-search li {
-	list-style: disc;
+	list-style: none;
 	margin-left: var(--spacing-md);
-	margin-bottom: var(--spacing-lg);
+	margin-bottom: var(--spacing-xl);
 	transition: transform 0.2s ease;
+	position: relative;
+	padding-left: var(--spacing-lg);
+}
+
+.page-search .list-search li:before {
+	content: '›';
+	position: absolute;
+	left: 0;
+	color: var(--primary-color);
+	font-size: 20px;
+	font-weight: var(--font-weight-bold);
 }
 
 .page-search .list-search li:hover {
@@ -181,16 +264,26 @@ html.dark .list-post li .tags a:hover {
 	display: block;
 	border-bottom: 1px dashed var(--border-color);
 	padding-bottom: var(--spacing-sm);
+	transition: all 0.3s ease;
+}
+
+.page-search .list-search a:hover {
+	border-bottom-color: var(--primary-color);
 }
 
 .page-search .list-search .title {
 	display: inline-block;
 	word-break: break-word;
-	font-size: 16px;
-	font-weight: 600;
-	padding-bottom: 1px;
+	font-size: 18px;
+	font-weight: var(--font-weight-semibold);
+	padding-bottom: 2px;
 	color: var(--text-secondary);
-	border-bottom: 1px solid var(--text-tertiary);
+	margin-bottom: var(--spacing-xs);
+	font-family: var(--font-serif);
+}
+
+.page-search .list-search a:hover .title {
+	color: var(--primary-color);
 }
 
 .page-search .list-search .content {
@@ -204,7 +297,7 @@ html.dark .list-post li .tags a:hover {
 
 .page-search .list-search .hint {
 	font-size: inherit;
-	font-weight: bold;
+	font-weight: var(--font-weight-bold);
 	color: var(--primary-color);
 }
 
@@ -214,16 +307,42 @@ html.dark .list-post li .tags a:hover {
 	border: 1px solid var(--border-color);
 	border-radius: var(--radius-md);
 	margin: var(--spacing-md) 0;
+	box-shadow: var(--shadow-sm);
 }
 
 .page-index {
 	margin-top: var(--spacing-xl);
 }
 
+/* 装饰性背景元素 */
+.decorative-bg {
+	position: fixed;
+	z-index: -1;
+	opacity: 0.05;
+}
+
+.decorative-bg.circle-1 {
+	top: 15%;
+	right: 10%;
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+}
+
+.decorative-bg.circle-2 {
+	bottom: 20%;
+	left: 5%;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+}
+
 @media screen and (max-width: 560px) {
 	.list-post > h2 {
 		padding: var(--spacing-sm) 0;
-		font-size: 16px;
+		font-size: 18px;
 	}
 
 	.list-post ul {
@@ -248,7 +367,7 @@ html.dark .list-post li .tags a:hover {
 
 	.list-post li .title a {
 		font-size: 16px;
-		font-weight: 500;
+		font-weight: var(--font-weight-medium);
 	}
 
 	.list-post .categories {
@@ -256,6 +375,11 @@ html.dark .list-post li .tags a:hover {
 	}
 
 	.list-category h2 {
+		padding: var(--spacing-sm) 0;
+		font-size: 18px;
+	}
+
+	.list-category div {
 		padding: var(--spacing-sm) 0;
 	}
 
