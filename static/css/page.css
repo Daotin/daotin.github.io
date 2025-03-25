@@ -18,6 +18,7 @@
 	background: linear-gradient(90deg, var(--primary-color), transparent);
 	margin-left: var(--spacing-md);
 	opacity: 0.5;
+	display: none;
 }
 
 .list-post ul {
@@ -152,6 +153,7 @@ html.dark .list-post li .tags a:hover {
 	background: linear-gradient(90deg, var(--primary-color), transparent);
 	margin-left: var(--spacing-md);
 	opacity: 0.5;
+	display: none;
 }
 
 .list-category div {
