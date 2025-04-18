@@ -145,25 +145,6 @@ title: 项目
 		margin-bottom: var(--spacing-xl);
 	}
 
-	.project-icons {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		display: flex;
-		gap: 8px;
-	}
-
-	.project-icon {
-		width: 20px;
-		height: 20px;
-		opacity: 0.5;
-		transition: opacity 0.3s ease;
-	}
-
-	.project-icon:hover {
-		opacity: 1;
-	}
-
 	@media screen and (max-width: 680px) {
 		.card-container {
 			grid-template-columns: 1fr;
@@ -225,18 +206,6 @@ title: 项目
 			const projectIcon = getProjectIcon(project)
 
 			let cardContent = `
-				<div class="project-icons">
-					${
-						project.npmLink
-							? '<img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/npm.svg" class="project-icon" alt="NPM">'
-							: ''
-					}
-					${
-						project.website
-							? '<img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/googlechrome.svg" class="project-icon" alt="Website">'
-							: ''
-					}
-				</div>
 				<div class="card-title">
 					<span class="card-title-icon">${projectIcon}</span>
 					${project.name}

@@ -29,16 +29,14 @@ tucaoUrl: 'https://support.qq.com/product/380958' # https://support.qq.com/produ
 menu:
   - title: 首页
     url: /
-  - title: 归类
+  - title: 标签
     url: /pages/tags.html
-  - title: 留言
-    url: /pages/chat.html
-  - title: 关于
-    url: /pages/about.html
-  - title: 项目
-    url: /pages/project.html
   - title: 搜索
     url: /pages/search.html
+  - title: 关于我
+    url: /pages/project.html
+  - title: 留言板
+    url: /pages/chat.html
 
 # 点击页面文字冒出特效,不需要请设置为false
 extClickEffect: false
