@@ -33,67 +33,135 @@ title: 项目
 	}
 
 	.card {
+		position: relative;
 		border: 1px solid var(--border-color);
 		border-radius: var(--radius-md);
 		padding: var(--spacing-md);
 		transition: all 0.3s ease;
 		background-color: var(--bg-secondary);
+		overflow: hidden;
+	}
+
+	.card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 4px;
+		background: linear-gradient(90deg, var(--primary-color), #6d28d9);
+		opacity: 0;
+		transition: opacity 0.3s ease;
 	}
 
 	.card:hover {
 		transform: translateY(-4px);
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 		border-color: var(--primary-color);
 	}
 
+	.card:hover::before {
+		opacity: 1;
+	}
+
 	.card-title {
-		font-size: 16px;
+		font-size: 17px;
 		font-weight: 600;
 		margin-bottom: var(--spacing-sm);
 		color: var(--text-secondary);
+		display: flex;
+		align-items: center;
+	}
+
+	.card-title-icon {
+		margin-right: 8px;
+		color: var(--primary-color);
+		font-size: 20px;
 	}
 
 	.card-desc {
 		font-size: 14px;
 		color: var(--text-tertiary);
 		margin-bottom: var(--spacing-sm);
-		line-height: 1.5;
+		line-height: 1.6;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.card-links {
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--spacing-sm);
-		margin-top: var(--spacing-sm);
+		margin-top: var(--spacing-md);
 	}
 
 	.card-link {
 		font-size: 13px;
 		color: var(--primary-color);
-		padding: 4px 10px;
-		border-radius: var(--radius-sm);
+		padding: 6px 12px;
+		border-radius: var(--radius-md);
 		background-color: rgba(96, 165, 250, 0.1);
-		transition: all 0.2s ease;
+		transition: all 0.3s ease;
 		display: inline-flex;
 		align-items: center;
+		border: 1px solid rgba(96, 165, 250, 0.2);
 	}
 
 	.card-link:hover {
 		background-color: var(--primary-color);
 		color: white;
+		transform: translateY(-2px);
 	}
 
 	.card-link svg {
 		width: 14px;
 		height: 14px;
-		margin-right: 4px;
+		margin-right: 6px;
 	}
 
 	.tool-card {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		min-height: 80px;
+		padding: var(--spacing-md);
+		min-height: 100px;
+		background: linear-gradient(45deg, var(--bg-secondary), rgba(96, 165, 250, 0.05));
+		transition: all 0.3s ease;
+	}
+
+	.tool-card:hover {
+		background: linear-gradient(45deg, var(--bg-secondary), rgba(96, 165, 250, 0.1));
+	}
+
+	.tool-icon {
+		font-size: 32px;
+		margin-right: var(--spacing-md);
+		color: var(--primary-color);
+	}
+
+	.tools-wrapper {
+		margin-bottom: var(--spacing-xl);
+	}
+
+	.project-icons {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		display: flex;
+		gap: 8px;
+	}
+
+	.project-icon {
+		width: 20px;
+		height: 20px;
+		opacity: 0.5;
+		transition: opacity 0.3s ease;
+	}
+
+	.project-icon:hover {
+		opacity: 1;
 	}
 
 	@media screen and (max-width: 680px) {
@@ -121,22 +189,27 @@ title: 项目
 	document.addEventListener('DOMContentLoaded', async function () {
 		// 加载开源项目数据
 		try {
-			const response = await fetch('/public/project-list.js')
-			const text = await response.text()
-			const projectListMatch = text.match(/export const projectList = (\[[\s\S]*?\]);/)
-
-			if (projectListMatch && projectListMatch[1]) {
-				const projectsData = JSON.parse(projectListMatch[1].replace(/'/g, '"'))
-				renderProjects(projectsData)
-			}
+			const response = await fetch('/public/project-list.json')
+			const data = await response.json()
+			renderProjects(data.projectList)
 		} catch (error) {
 			console.error('加载项目列表失败:', error)
 		}
 
 		// 加载网页小工具
 		const webTools = [
-			{ name: '跑步配速转换器', url: '/public/web-tools/pszh.html' },
-			{ name: '收益率换算器', url: '/public/web-tools/income.html' },
+			{
+				name: '跑步配速转换器',
+				url: '/public/web-tools/pszh.html',
+				icon: '🏃',
+				description: '轻松计算跑步配速、时间和距离之间的关系',
+			},
+			{
+				name: '收益率换算器',
+				url: '/public/web-tools/income.html',
+				icon: '📊',
+				description: '快速计算和比较不同投资的年化收益率',
+			},
 		]
 		renderWebTools(webTools)
 	})
@@ -148,7 +221,26 @@ title: 项目
 			const card = document.createElement('div')
 			card.className = 'card'
 
-			let cardContent = `<div class="card-title">${project.name}</div>`
+			// 确定项目类型图标
+			const projectIcon = getProjectIcon(project)
+
+			let cardContent = `
+				<div class="project-icons">
+					${
+						project.npmLink
+							? '<img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/npm.svg" class="project-icon" alt="NPM">'
+							: ''
+					}
+					${
+						project.website
+							? '<img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/googlechrome.svg" class="project-icon" alt="Website">'
+							: ''
+					}
+				</div>
+				<div class="card-title">
+					<span class="card-title-icon">${projectIcon}</span>
+					${project.name}
+				</div>`
 
 			if (project.description) {
 				cardContent += `<div class="card-desc">${project.description}</div>`
@@ -204,12 +296,32 @@ title: 项目
 			card.className = 'card tool-card'
 
 			card.innerHTML = `
-        <a href="${tool.url}" class="card-title">
-          ${tool.name}
-        </a>
+        <div class="tool-icon">${tool.icon}</div>
+        <div>
+          <a href="${tool.url}" class="card-title">
+            ${tool.name}
+          </a>
+          <div class="card-desc">${tool.description}</div>
+        </div>
       `
 
 			container.appendChild(card)
 		})
+	}
+
+	// 根据项目名称选择合适的图标
+	function getProjectIcon(project) {
+		const name = project.name.toLowerCase()
+
+		if (name.includes('vue')) return '⚡'
+		if (name.includes('监控')) return '📊'
+		if (name.includes('脚手架')) return '🛠️'
+		if (name.includes('ai')) return '🤖'
+		if (name.includes('模板')) return '📐'
+		if (name.includes('面试')) return '📝'
+		if (name.includes('教程')) return '📚'
+
+		// 默认图标
+		return '🔧'
 	}
 </script>
