@@ -3,10 +3,213 @@ layout: page
 title: 项目
 ---
 
-<div>
-  <ul>
-    <li><a href="https://daotin.github.io/fe-series-notes/engineer/">1、前端工程化专栏</a></li>
-    <li><a href="https://daotin.github.io/public/pszh.html">2、跑步配速转换器</a></li>
-    <li><a href="https://daotin.github.io/public/income.html">3、收益率换算器</a></li>
-  </ul>
+<style>
+	.project-section {
+		margin-bottom: var(--spacing-xl);
+	}
+
+	.project-section h2 {
+		font-size: 18px;
+		font-weight: 700;
+		padding: var(--spacing-md) 0;
+		color: var(--text-secondary);
+		display: flex;
+		align-items: center;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.project-section h2:after {
+		content: '';
+		flex-grow: 1;
+		height: 1px;
+		background-color: var(--border-color);
+		margin-left: var(--spacing-md);
+	}
+
+	.card-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--spacing-md);
+	}
+
+	.card {
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-md);
+		padding: var(--spacing-md);
+		transition: all 0.3s ease;
+		background-color: var(--bg-secondary);
+	}
+
+	.card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		border-color: var(--primary-color);
+	}
+
+	.card-title {
+		font-size: 16px;
+		font-weight: 600;
+		margin-bottom: var(--spacing-sm);
+		color: var(--text-secondary);
+	}
+
+	.card-desc {
+		font-size: 14px;
+		color: var(--text-tertiary);
+		margin-bottom: var(--spacing-sm);
+		line-height: 1.5;
+	}
+
+	.card-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--spacing-sm);
+		margin-top: var(--spacing-sm);
+	}
+
+	.card-link {
+		font-size: 13px;
+		color: var(--primary-color);
+		padding: 4px 10px;
+		border-radius: var(--radius-sm);
+		background-color: rgba(96, 165, 250, 0.1);
+		transition: all 0.2s ease;
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.card-link:hover {
+		background-color: var(--primary-color);
+		color: white;
+	}
+
+	.card-link svg {
+		width: 14px;
+		height: 14px;
+		margin-right: 4px;
+	}
+
+	.tool-card {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 80px;
+	}
+
+	@media screen and (max-width: 680px) {
+		.card-container {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<div class="project-section">
+	<h2>开源项目</h2>
+	<div class="card-container" id="open-source-projects">
+		<!-- 项目卡片将通过JavaScript动态加载 -->
+	</div>
 </div>
+
+<div class="project-section">
+	<h2>网页小工具</h2>
+	<div class="card-container" id="web-tools">
+		<!-- 网页小工具卡片将通过JavaScript动态加载 -->
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', async function () {
+		// 加载开源项目数据
+		try {
+			const response = await fetch('/public/project-list.js')
+			const text = await response.text()
+			const projectListMatch = text.match(/export const projectList = (\[[\s\S]*?\]);/)
+
+			if (projectListMatch && projectListMatch[1]) {
+				const projectsData = JSON.parse(projectListMatch[1].replace(/'/g, '"'))
+				renderProjects(projectsData)
+			}
+		} catch (error) {
+			console.error('加载项目列表失败:', error)
+		}
+
+		// 加载网页小工具
+		const webTools = [
+			{ name: '跑步配速转换器', url: '/public/web-tools/pszh.html' },
+			{ name: '收益率换算器', url: '/public/web-tools/income.html' },
+		]
+		renderWebTools(webTools)
+	})
+
+	function renderProjects(projects) {
+		const container = document.getElementById('open-source-projects')
+
+		projects.forEach(project => {
+			const card = document.createElement('div')
+			card.className = 'card'
+
+			let cardContent = `<div class="card-title">${project.name}</div>`
+
+			if (project.description) {
+				cardContent += `<div class="card-desc">${project.description}</div>`
+			}
+
+			cardContent += `<div class="card-links">`
+
+			if (project.link) {
+				cardContent += `
+          <a href="${project.link}" target="_blank" class="card-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            GitHub
+          </a>`
+			}
+
+			if (project.website) {
+				cardContent += `
+          <a href="${project.website}" target="_blank" class="card-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            网站
+          </a>`
+			}
+
+			if (project.npmLink) {
+				cardContent += `
+          <a href="${project.npmLink}" target="_blank" class="card-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M3 3v18h18V3H3z" fill="currentColor"/>
+              <path d="M7 7v10h5V7H7z" fill="white"/>
+            </svg>
+            NPM
+          </a>`
+			}
+
+			cardContent += `</div>`
+			card.innerHTML = cardContent
+			container.appendChild(card)
+		})
+	}
+
+	function renderWebTools(tools) {
+		const container = document.getElementById('web-tools')
+
+		tools.forEach(tool => {
+			const card = document.createElement('div')
+			card.className = 'card tool-card'
+
+			card.innerHTML = `
+        <a href="${tool.url}" class="card-title">
+          ${tool.name}
+        </a>
+      `
+
+			container.appendChild(card)
+		})
+	}
+</script>
