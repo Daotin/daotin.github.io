@@ -232,19 +232,9 @@ uni-ui 是 DCloud 提供的一个跨端 ui 库，它是基于 vue 组件的、fl
 
 ## uView 组件库
 
-<aside>
-💡
-
-目前：目前 uView 尚未支持`VUE3.0`版本(`nvue`也尚未支持`VUE3.0`)，在 nvue 支持  `VUE3.0`之后，我们会迅速跟对`VUE3.0`的兼容
-
-于是，基于 uView 的支持`vue3`的组件库应运而生：
-
-- [uv-ui](https://github.com/climblee/uv-ui) (771 star)
-- [uview-plus](https://github.com/ijry/uview-plus) (466star)
-
-参考组件库选型：[https://codercup.github.io/unibest-docs/base/ui/ui](https://codercup.github.io/unibest-docs/base/ui/ui)
-
-</aside>
+> 目前：目前 uView 尚未支持 vue3版本，但是 [uview-plus](https://github.com/ijry/uview-plus) 和 [uv-ui](https://github.com/climblee/uv-ui) 支持vue3.
+> 
+> 参考[组件库选型](https://codercup.github.io/unibest-docs/base/ui/ui)。
 
 ### npm 安装
 
