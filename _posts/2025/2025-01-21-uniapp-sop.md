@@ -5,7 +5,7 @@ tags: [uniapp]
 ---
 
 1. 目录
-{:toc}
+   {:toc}
 
 ## 开发工具推荐
 
@@ -29,6 +29,10 @@ HbuilderX 安装的插件：
 在默认的结构上，增加了一些目录：
 
 ![Untitled](/image/2025/Untitled%201.png)
+
+> 为什么新增 style 目录，而不放在 static 目录？
+
+非 static 目录下的文件（vue 组件、js、css 等）只有被引用时，才会被打包编译。css、less/scss 等资源不要放在 static 目录下，建议这些公用的资源放在自建的 common 目录下。static 目录一般存放图片文件。
 
 ## UI 组件库
 
@@ -232,8 +236,8 @@ uni-ui 是 DCloud 提供的一个跨端 ui 库，它是基于 vue 组件的、fl
 
 ## uView 组件库
 
-> 目前：目前 uView 尚未支持 vue3版本，但是 [uview-plus](https://github.com/ijry/uview-plus) 和 [uv-ui](https://github.com/climblee/uv-ui) 支持vue3.
-> 
+> 目前：目前 uView 尚未支持 vue3 版本，但是 [uview-plus](https://github.com/ijry/uview-plus) 和 [uv-ui](https://github.com/climblee/uv-ui) 支持 vue3.
+>
 > 参考[组件库选型](https://codercup.github.io/unibest-docs/base/ui/ui)。
 
 ### npm 安装
