@@ -15,7 +15,14 @@
 			"npmLink": ""
 		},
 		{
-			"name": "Vue3 项目脚手架",
+			"name": "Vue3项目模板(create-vue3-template)",
+			"description": "前端框架模板 Vite+Vue3+Pinia+TypeScript+VueRouter+Element-Plus+TailwindCSS。",
+			"link": "https://github.com/Daotin/create-vue3-template",
+			"website": "https://daotin.github.io/fe-series-notes/",
+			"npmLink": ""
+		},
+		{
+			"name": "Vue3-Cli脚手架(dt-vue3-cli)",
 			"description": "一个简单易用的 Vue3 项目脚手架工具，用于快速创建 Vue3 项目模板。",
 			"link": "https://github.com/Daotin/dt-vue3-cli",
 			"website": "",
@@ -28,13 +35,7 @@
 			"website": "https://your-website.com",
 			"npmLink": ""
 		},
-		{
-			"name": "Vue3项目模板",
-			"description": "前端框架模板 Vite+Vue3+Pinia+TypeScript+VueRouter+Element-Plus+TailwindCSS。",
-			"link": "https://github.com/Daotin/create-vue3-template",
-			"website": "",
-			"npmLink": ""
-		},
+
 		{
 			"name": "前端随机面试题库",
 			"description": "一个简单的前端面试题库网站，支持分类查看和随机抽题，搜索和收藏功能。",
