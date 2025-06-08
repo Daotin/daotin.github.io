@@ -138,10 +138,6 @@ async function handleRequests(requests: any[], limit: number) {
 
 我们可以借鉴 **TCP 协议的慢启动逻辑**，去让切片的大小和当前网速匹配，这样，我们就可以通过网速确定切片的大小。
 
-文件上传的流程如下：
-
-![image](https://github.com/user-attachments/assets/0f535db0-3bb2-4dad-a2c4-1b53d7feed03)
-
 
 ### 分片卡顿问题
 
@@ -209,6 +205,10 @@ function generateChunks(file: any, chunkSize: number) {
   return chunks;
 }
 ```
+
+> 文件上传的流程如下：
+
+![image](https://github.com/user-attachments/assets/0f535db0-3bb2-4dad-a2c4-1b53d7feed03)
 
 // TODO 但是在计算量过大，也可能会出现卡顿问题。
 
