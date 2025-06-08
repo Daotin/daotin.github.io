@@ -138,6 +138,11 @@ async function handleRequests(requests: any[], limit: number) {
 
 我们可以借鉴 **TCP 协议的慢启动逻辑**，去让切片的大小和当前网速匹配，这样，我们就可以通过网速确定切片的大小。
 
+文件上传的流程如下：
+
+![image](https://github.com/user-attachments/assets/0f535db0-3bb2-4dad-a2c4-1b53d7feed03)
+
+
 ### 分片卡顿问题
 
 在文件上传之前，我们需要在前端计算出一个文件的 Hash 值作为唯一标识，用来向后端询问切片的列表。但是对于一个 2GB 大小的文件来说，即使是使用 MD5 算法来计算 Hash 值，也会造成浏览器的卡顿。那怎么解决计算 Hash 值时，浏览器的卡顿的问题呢？
