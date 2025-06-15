@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>车玻璃日期计算器</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        width: 100%;
+      }
+
+      .title {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 2.2em;
+        font-weight: 600;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 40px;
+        font-size: 1.1em;
+        line-height: 1.6;
+      }
+
+      .input-section {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+      }
+
+      .input-group {
+        margin-bottom: 25px;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+        font-size: 1.1em;
+      }
+
+      .input-row {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      input[type="number"] {
+        padding: 12px 16px;
+        border: 2px solid #e1e5e9;
+        border-radius: 10px;
+        font-size: 16px;
+        width: 80px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      input[type="number"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .dots-input {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .calculate-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-size: 1.1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block;
+        margin: 0 auto;
+        min-width: 200px;
+      }
+
+      .calculate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+      }
+
+      .result-section {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 30px;
+        color: white;
+        text-align: center;
+        display: none;
+      }
+
+      .result-section.show {
+        display: block;
+        animation: slideIn 0.5s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .result-title {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .result-content {
+        font-size: 1.2em;
+        line-height: 1.6;
+      }
+
+      .example-section {
+        background: #fff3cd;
+        border-radius: 15px;
+        padding: 25px;
+        margin-top: 30px;
+        border-left: 5px solid #ffc107;
+      }
+
+      .example-title {
+        font-weight: 600;
+        color: #856404;
+        margin-bottom: 15px;
+        font-size: 1.2em;
+      }
+
+      .example-content {
+        color: #856404;
+        line-height: 1.6;
+      }
+
+      .example-item {
+        margin-bottom: 10px;
+        padding: 8px 0;
+      }
+
+      .highlight {
+        background: rgba(102, 126, 234, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 25px;
+          margin: 10px;
+        }
+
+        .title {
+          font-size: 1.8em;
+        }
+
+        .input-row {
+          justify-content: center;
+        }
+
+        .dots-input {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">🚗 车玻璃日期计算器</h1>
+      <p class="subtitle">
+        通过车玻璃上的数字和黑点标记，准确计算玻璃的生产日期<br />
+        左边点表示上半年（7-点数），右边点表示下半年（13-点数）
+      </p>
+
+      <div class="input-section">
+        <div class="input-group">
+          <label>生产年份数字：</label>
+          <div class="input-row">
+            <input
+              type="number"
+              id="yearDigit"
+              min="0"
+              max="9"
+              placeholder="0-9"
+            />
+            <span>（年份最后一位数字）</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>点的数量：</label>
+          <div class="input-row">
+            <div class="dots-input">
+              <span>数字左边的点（上半年）：</span>
+              <input
+                type="number"
+                id="dotsBefore"
+                min="0"
+                max="6"
+                value="0"
+                placeholder="0-6"
+              />
+              <span>数字右边的点（下半年）：</span>
+              <input
+                type="number"
+                id="dotsAfter"
+                min="0"
+                max="6"
+                value="0"
+                placeholder="0-6"
+              />
+            </div>
+          </div>
+        </div>
+
+        <button class="calculate-btn" onclick="calculateDate()">
+          计算生产日期
+        </button>
+      </div>
+
+      <div class="result-section" id="resultSection">
+        <div class="result-title">计算结果</div>
+        <div class="result-content" id="resultContent"></div>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">📋 使用说明</div>
+        <div class="example-content">
+          <div class="example-item">
+            <strong>🕒 年份（数字）：</strong> 数字代表年份的最后一位（如：<span
+              class="highlight"
+              >8</span
+            >
+            表示2008年或2018年），需结合车辆制造年份推断
+          </div>
+          <div class="example-item">
+            <strong>☀️ 月份（黑点）：</strong>
+            <br />• <strong>点在数字左边</strong>（上半年）：月份 = 7 - 点数
+            <br />• <strong>点在数字右边</strong>（下半年）：月份 = 13 - 点数
+            <br />• 点数范围：1-6个点，对应不同月份
+          </div>
+          <div class="example-item">
+            <strong>✅ 示例解读：</strong>
+            <br />• <span class="highlight">••8</span>（左边2个点+数字8）→
+            2018年5月（7-2=5月） <br />•
+            <span class="highlight">8•••</span>（数字8+右边3个点）→
+            2018年10月（13-3=10月）
+          </div>
+          <div class="example-item">
+            <strong>⚠️ 注意事项：</strong>
+            <br />• 各厂家标注可能略有差异 <br />• 建议结合整车出厂年份做参考
+            <br />• 数字通常表示年份最后一位数字
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function calculateDate() {
+        const yearDigit = parseInt(document.getElementById("yearDigit").value);
+        const dotsBefore =
+          parseInt(document.getElementById("dotsBefore").value) || 0;
+        const dotsAfter =
+          parseInt(document.getElementById("dotsAfter").value) || 0;
+
+        // 验证输入
+        if (isNaN(yearDigit) || yearDigit < 0 || yearDigit > 9) {
+          alert("请输入有效的年份数字（0-9）");
+          return;
+        }
+
+        if (
+          dotsBefore < 0 ||
+          dotsBefore > 6 ||
+          dotsAfter < 0 ||
+          dotsAfter > 6
+        ) {
+          alert("点的数量应在0-6之间");
+          return;
+        }
+
+        if (dotsBefore > 0 && dotsAfter > 0) {
+          alert("点只能在数字的一侧，不能同时在前后两侧");
+          return;
+        }
+
+        if (dotsBefore === 0 && dotsAfter === 0) {
+          alert("请至少输入一个点的数量");
+          return;
+        }
+
+        // 计算年份（假设当前是2020年代）
+        const currentYear = new Date().getFullYear();
+        const currentDecade = Math.floor(currentYear / 10) * 10;
+        const possibleYears = [
+          currentDecade + yearDigit,
+          currentDecade + yearDigit - 10,
+          currentDecade + yearDigit + 10,
+        ];
+
+        // 选择最合理的年份（最接近当前年份但不超过当前年份太多）
+        let calculatedYear =
+          possibleYears.find((year) => year <= currentYear + 1) ||
+          possibleYears[0];
+
+        // 计算月份
+        let month;
+        let monthCalculation;
+
+        if (dotsBefore > 0) {
+          month = 7 - dotsBefore;
+          monthCalculation = `7 - ${dotsBefore} = ${month}`;
+        } else {
+          month = 13 - dotsAfter;
+          monthCalculation = `13 - ${dotsAfter} = ${month}`;
+        }
+
+        // 验证月份
+        if (month < 1 || month > 12) {
+          alert("计算出的月份无效，请检查点的数量");
+          return;
+        }
+
+        // 显示结果
+        const monthNames = [
+          "",
+          "一月",
+          "二月",
+          "三月",
+          "四月",
+          "五月",
+          "六月",
+          "七月",
+          "八月",
+          "九月",
+          "十月",
+          "十一月",
+          "十二月",
+        ];
+
+        const dotPattern =
+          dotsBefore > 0
+            ? "•".repeat(dotsBefore) + yearDigit
+            : yearDigit + "•".repeat(dotsAfter);
+
+        const resultContent = `
+                <div style="font-size: 1.4em; margin-bottom: 20px;">
+                    <strong>${calculatedYear}年${month}月</strong>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    标记模式：<strong>${dotPattern}</strong>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    年份：20${yearDigit}X年 → <strong>${calculatedYear}年</strong>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    月份计算：${monthCalculation} → <strong>${
+          monthNames[month]
+        }</strong>
+                </div>
+                <div style="font-size: 0.9em; opacity: 0.9; margin-top: 15px;">
+                    ${
+                      dotsBefore > 0
+                        ? "点在数字左边（上半年）：7 - 点数"
+                        : "点在数字右边（下半年）：13 - 点数"
+                    }
+                </div>
+            `;
+
+        document.getElementById("resultContent").innerHTML = resultContent;
+        document.getElementById("resultSection").classList.add("show");
+
+        // 滚动到结果区域
+        document.getElementById("resultSection").scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+        });
+      }
+
+      // 添加回车键支持
+      document.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          calculateDate();
+        }
+      });
+
+      // 输入验证
+      document
+        .getElementById("yearDigit")
+        .addEventListener("input", function (e) {
+          if (e.target.value > 9) e.target.value = 9;
+          if (e.target.value < 0) e.target.value = 0;
+        });
+
+      document
+        .getElementById("dotsBefore")
+        .addEventListener("input", function (e) {
+          if (e.target.value > 6) e.target.value = 6;
+          if (e.target.value < 0) e.target.value = 0;
+          if (parseInt(e.target.value) > 0) {
+            document.getElementById("dotsAfter").value = 0;
+          }
+        });
+
+      document
+        .getElementById("dotsAfter")
+        .addEventListener("input", function (e) {
+          if (e.target.value > 6) e.target.value = 6;
+          if (e.target.value < 0) e.target.value = 0;
+          if (parseInt(e.target.value) > 0) {
+            document.getElementById("dotsBefore").value = 0;
+          }
+        });
+    </script>
+  </body>
+</html>
