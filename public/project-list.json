@@ -29,6 +29,13 @@
 			"npmLink": ""
 		},
 		{
+			"name": "小红书内容生成器",
+			"description": "一个基于 pnpm workspace + Turborepo 架构的AI Agent，利用 Vercel AI SDK + DeepSeek API，将用户输入的非结构化文本，转化为符合小红书平台调性的结构化内容。",
+			"link": "https://github.com/Daotin/vercel-monorepo-demo",
+			"website": "https://vercel-monorepo-demo-five.vercel.app/",
+			"npmLink": ""
+		},
+		{
 			"name": "AI 代码审查工具",
 			"description": "一个基于 OpenRouter API 的 AI 代码审查 Code Review 工具，帮助开发者在提交代码前进行自动审查。",
 			"link": "https://github.com/Daotin/ai-code-review",
