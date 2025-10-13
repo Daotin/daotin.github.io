@@ -1,11 +1,11 @@
 .list-post > h2 {
-	font-size: 16px;
-	font-weight: 700;
-	padding: var(--spacing-sm) 0;
-	color: var(--text-secondary);
+	font-size: 18px;
+	font-weight: 600;
+	padding: var(--spacing-md) 0;
+	color: var(--text-color);
 	display: flex;
 	align-items: center;
-	margin-bottom: var(--spacing-sm);
+	margin-bottom: var(--spacing-md);
 	letter-spacing: -0.01em;
 }
 
@@ -13,8 +13,8 @@
 	content: '';
 	flex-grow: 1;
 	height: 1px;
-	background-color: var(--border-color);
-	margin-left: var(--spacing-md);
+	background-color: var(--divider-color);
+	margin-left: var(--spacing-lg);
 }
 
 .list-post ul {
@@ -53,8 +53,8 @@
 }
 
 .list-post li .title a {
-	font-size: 15px;
-	transition: color 0.2s ease;
+	font-size: 16px;
+	transition: color var(--transition-fast);
 	font-weight: 500;
 }
 
@@ -72,12 +72,12 @@
 
 .list-post li .tags a {
 	font-size: 12px;
-	color: var(--text-tertiary);
+	color: var(--text-secondary);
 	margin-left: 4px;
-	background-color: var(--bg-secondary);
-	padding: 2px 7px;
-	border-radius: 3px;
-	transition: all 0.2s ease;
+	background-color: rgba(142, 150, 170, 0.14);
+	padding: 2px 8px;
+	border-radius: var(--radius-sm);
+	transition: all var(--transition-fast);
 	font-weight: 500;
 }
 
@@ -87,8 +87,8 @@
 }
 
 html.dark .list-post li .tags a {
-	background-color: rgba(91, 141, 239, 0.1);
-	color: var(--text-tertiary);
+	background-color: rgba(101, 117, 133, 0.16);
+	color: var(--text-secondary);
 }
 
 html.dark .list-post li .tags a:hover {
@@ -97,10 +97,10 @@ html.dark .list-post li .tags a:hover {
 }
 
 .list-category h2 {
-	font-size: 16px;
-	font-weight: 700;
-	padding: var(--spacing-sm) 0;
-	color: var(--text-secondary);
+	font-size: 18px;
+	font-weight: 600;
+	padding: var(--spacing-md) 0;
+	color: var(--text-color);
 	display: flex;
 	align-items: center;
 }
@@ -109,8 +109,8 @@ html.dark .list-post li .tags a:hover {
 	content: '';
 	flex-grow: 1;
 	height: 1px;
-	background-color: var(--border-color);
-	margin-left: var(--spacing-md);
+	background-color: var(--divider-color);
+	margin-left: var(--spacing-lg);
 }
 
 .list-category div {
@@ -134,19 +134,20 @@ html.dark .list-post li .tags a:hover {
 
 .page-search #search-input {
 	text-align: center;
-	font-size: 15px;
+	font-size: 16px;
 	border: 1px solid var(--border-color);
 	width: 100%;
-	padding: var(--spacing-md);
-	border-radius: var(--radius-sm);
-	background-color: var(--bg-secondary);
-	margin-bottom: var(--spacing-lg);
-	transition: all 0.25s ease;
+	padding: var(--spacing-md) var(--spacing-lg);
+	border-radius: var(--radius-md);
+	background-color: var(--bg-alt);
+	margin-bottom: var(--spacing-xl);
+	transition: all var(--transition-normal);
 }
 
 .page-search #search-input:focus {
 	border-color: var(--primary-color);
-	box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
+	box-shadow: 0 0 0 3px rgba(52, 81, 178, 0.1);
+	outline: none;
 }
 
 .page-search h1 {
@@ -156,9 +157,9 @@ html.dark .list-post li .tags a:hover {
 }
 
 .page-search h1 span {
-	font-size: 16px;
-	font-weight: 700;
-	color: var(--text-secondary);
+	font-size: 18px;
+	font-weight: 600;
+	color: var(--text-color);
 }
 
 .page-search h1 img {
@@ -182,17 +183,17 @@ html.dark .list-post li .tags a:hover {
 
 .page-search .list-search a {
 	display: block;
-	border-bottom: 1px dashed var(--border-color);
+	border-bottom: 1px dashed var(--divider-color);
 	padding-bottom: var(--spacing-sm);
 }
 
 .page-search .list-search .title {
 	display: inline-block;
 	word-break: break-word;
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: 600;
 	padding-bottom: 1px;
-	color: var(--text-secondary);
+	color: var(--text-color);
 	border-bottom: 1px solid var(--text-tertiary);
 }
 
@@ -212,9 +213,9 @@ html.dark .list-post li .tags a:hover {
 }
 
 .markdown-body ol {
-	background-color: var(--bg-secondary);
+	background-color: var(--bg-alt);
 	padding: var(--spacing-md) 2em;
-	border: 1px solid var(--border-color);
+	border: 1px solid var(--divider-color);
 	border-radius: var(--radius-md);
 	margin: var(--spacing-md) 0;
 }
