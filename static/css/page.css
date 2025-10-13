@@ -47,6 +47,7 @@
 	width: 0;
 	flex-grow: 1;
 	padding: var(--spacing-xs) 0;
+  margin-left: 20px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
