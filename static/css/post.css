@@ -1,20 +1,23 @@
 .page-post {
-	font-size: 16px;
-	line-height: 1.8;
+	font-size: 15px;
+	line-height: 1.7;
 	word-break: break-word;
 	color: var(--text-color);
 }
 .page-post .title {
-	font-size: 2rem;
+	font-size: 1.875rem;
 	font-weight: 700;
 	color: var(--text-secondary);
 	margin-bottom: var(--spacing-sm);
-	line-height: 1.3;
+	line-height: 1.25;
+	letter-spacing: -0.02em;
 }
 .page-post .subtitle {
-	font-size: 14px;
+	font-size: 13px;
 	color: var(--text-tertiary);
-	margin-bottom: var(--spacing-xl);
+	margin-bottom: var(--spacing-lg);
+	padding-bottom: var(--spacing-lg);
+	border-bottom: 1px solid var(--border-color);
 	display: flex;
 	align-items: center;
 	gap: var(--spacing-md);
@@ -23,7 +26,7 @@
 	color: var(--primary-color);
 }
 .page-post .post > * {
-	margin: var(--spacing-lg) 0;
+	margin: var(--spacing-md) 0;
 }
 .page-post .post > iframe {
 	margin: 0;
@@ -35,36 +38,38 @@
 .page-post .post h2 {
 	color: var(--text-secondary);
 	font-weight: 700;
-	font-size: 1.5em;
+	font-size: 1.4em;
 	position: relative;
-	margin-top: 35px;
-	margin-bottom: 16px;
-	padding-bottom: var(--spacing-xs);
+	margin-top: var(--spacing-xl);
+	margin-bottom: var(--spacing-md);
+	padding-bottom: var(--spacing-sm);
 	border-bottom: 1px solid var(--border-color);
+	letter-spacing: -0.01em;
 }
 .page-post h3,
 .page-post h4,
 .page-post h5,
 .page-post h6 {
 	font-weight: 600;
-	margin-top: var(--spacing-xl);
-	margin-bottom: var(--spacing-md);
+	margin-top: var(--spacing-lg);
+	margin-bottom: var(--spacing-sm);
 	color: var(--text-secondary);
 }
 .page-post h3 {
-	font-size: 1.35em;
+	font-size: 1.25em;
 }
 .page-post h4 {
-	font-size: 1.2em;
+	font-size: 1.1em;
 }
 .page-post blockquote {
-	border-left: 4px solid var(--primary-color);
-	background-color: rgba(49, 130, 206, 0.05);
-	padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-lg);
+	border-left: 3px solid var(--primary-color);
+	background-color: rgba(52, 81, 178, 0.04);
+	padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
 	color: var(--text-secondary);
 	border-radius: var(--radius-sm);
 	font-style: italic;
-	margin: var(--spacing-lg) 0;
+	margin: var(--spacing-md) 0;
+	font-size: 0.95em;
 }
 .page-post a {
 	background: linear-gradient(90deg, var(--primary-color), var(--primary-color)),
@@ -88,14 +93,15 @@
 .page-post img {
 	display: block;
 	max-width: 100%;
-	margin: var(--spacing-xl) auto;
+	margin: var(--spacing-lg) auto;
 	height: auto;
-	box-shadow: var(--shadow-md);
-	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
+	border-radius: var(--radius-sm);
 	transition: var(--transition-normal);
+	border: 1px solid var(--border-color);
 }
 .page-post img:hover {
-	box-shadow: var(--shadow-lg);
+	box-shadow: var(--shadow-md);
 }
 .page-post img[alt='line'] {
 	display: inline-block;
@@ -106,31 +112,32 @@
 	line-height: 1;
 }
 .page-post pre {
-	font-size: 14px;
+	font-size: 13px;
 	padding: var(--spacing-md);
 	overflow: auto;
 	max-height: 610px;
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
-	line-height: 1.6;
-	border-radius: var(--radius-md);
+	line-height: 1.5;
+	border-radius: var(--radius-sm);
 	background-color: #f6f8fa;
-	margin: var(--spacing-lg) 0;
+	margin: var(--spacing-md) 0;
+	border: 1px solid var(--border-color);
 }
 .page-post code {
-	font-size: 14px;
-	background-color: rgba(49, 130, 206, 0.08);
+	font-size: 0.9em;
+	background-color: rgba(52, 81, 178, 0.06);
 	color: var(--primary-color);
 	word-break: break-word;
-	padding: 3px 6px;
-	margin: 0 2px;
-	border-radius: var(--radius-sm);
+	padding: 2px 6px;
+	margin: 0 1px;
+	border-radius: 3px;
 	transition: var(--transition-normal);
 	font-weight: 500;
 }
 .page-post pre code {
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: normal;
 	background-color: transparent !important;
 	word-break: keep-all;
@@ -188,38 +195,40 @@
 	border-bottom: 0;
 }
 .page-post p {
-	margin: var(--spacing-md) 0;
-	line-height: 1.8;
+	margin: var(--spacing-sm) 0;
+	line-height: 1.7;
 }
 
 /* 目录悬浮在右边 */
 .page-post .post ul {
 	margin-left: var(--spacing-lg);
-	margin-bottom: var(--spacing-md);
+	margin-bottom: var(--spacing-sm);
 }
 .page-post .post ol {
 	margin-left: calc(var(--spacing-lg) + 5px);
-	margin-bottom: var(--spacing-md);
+	margin-bottom: var(--spacing-sm);
 }
 .page-post ul li {
 	list-style: disc outside;
-	margin-bottom: var(--spacing-xs);
+	margin-bottom: 6px;
+	line-height: 1.6;
 }
 .page-post ol li {
 	list-style: decimal outside;
-	margin-bottom: var(--spacing-xs);
+	margin-bottom: 6px;
+	line-height: 1.6;
 }
 #markdown-toc {
 	position: fixed;
-	top: var(--spacing-xl);
+	top: 100px;
 	right: calc((100% - var(--content-width)) / 2 - 220px);
 	width: 200px;
-	font-size: 14px;
+	font-size: 13px;
 	background-color: var(--bg-color);
-	border-radius: var(--radius-md);
-	box-shadow: var(--shadow-sm);
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border-color);
 	padding: var(--spacing-md);
-	max-height: calc(100vh - 100px);
+	max-height: calc(100vh - 140px);
 	overflow-y: auto;
 }
 #markdown-toc li {
@@ -227,7 +236,8 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	margin-bottom: var(--spacing-xs);
+	margin-bottom: 6px;
+	line-height: 1.5;
 }
 #markdown-toc a {
 	color: var(--text-tertiary);
@@ -244,18 +254,18 @@
 }
 @media screen and (max-width: 560px) {
 	.page-post {
-		font-size: 15px;
+		font-size: 14px;
 	}
 	.page-post .title {
-		font-size: 1.6rem;
+		font-size: 1.5rem;
 	}
 	.page-post pre code {
-		font-size: 13px;
+		font-size: 12px;
 	}
 	.page-post .post > * {
-		margin: var(--spacing-md) 0;
+		margin: var(--spacing-sm) 0;
 	}
 	.page-post h3 {
-		font-size: 1.25em;
+		font-size: 1.2em;
 	}
 }

@@ -1,11 +1,12 @@
 .list-post > h2 {
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 700;
-	padding: var(--spacing-md) 0;
+	padding: var(--spacing-sm) 0;
 	color: var(--text-secondary);
 	display: flex;
 	align-items: center;
 	margin-bottom: var(--spacing-sm);
+	letter-spacing: -0.01em;
 }
 
 .list-post > h2:after {
@@ -18,28 +19,28 @@
 
 .list-post ul {
 	box-sizing: border-box;
-	padding-left: var(--spacing-md);
-	margin-bottom: var(--spacing-xl);
+	padding-left: var(--spacing-sm);
+	margin-bottom: var(--spacing-lg);
 }
 
 .list-post li {
 	display: flex;
 	align-items: center;
-	padding: var(--spacing-xs) 0;
+	padding: 6px 0;
 	transition: transform 0.2s ease;
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-sm);
 }
-
 .list-post li:hover {
-	transform: translateX(4px);
+	transform: translateX(3px);
+}
 }
 
 .list-post li .date {
 	color: var(--text-tertiary);
-	font-size: 14px;
+	font-size: 13px;
 	flex-shrink: 0;
-	margin-right: var(--spacing-lg);
-	font-weight: 500;
+	margin-right: var(--spacing-md);
+	font-weight: 400;
 }
 
 .list-post li .title {
@@ -52,8 +53,9 @@
 }
 
 .list-post li .title a {
-	font-size: 16px;
+	font-size: 15px;
 	transition: color 0.2s ease;
+	font-weight: 500;
 }
 
 .list-post li:hover .title a {
@@ -69,13 +71,14 @@
 }
 
 .list-post li .tags a {
-	font-size: 13px;
+	font-size: 12px;
 	color: var(--text-tertiary);
 	margin-left: 4px;
 	background-color: var(--bg-secondary);
-	padding: 2px 8px;
-	border-radius: var(--radius-sm);
+	padding: 2px 7px;
+	border-radius: 3px;
 	transition: all 0.2s ease;
+	font-weight: 500;
 }
 
 .list-post li .tags a:hover {
@@ -84,7 +87,7 @@
 }
 
 html.dark .list-post li .tags a {
-	background-color: rgba(96, 165, 250, 0.1);
+	background-color: rgba(91, 141, 239, 0.1);
 	color: var(--text-tertiary);
 }
 
@@ -94,9 +97,9 @@ html.dark .list-post li .tags a:hover {
 }
 
 .list-category h2 {
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 700;
-	padding: var(--spacing-md) 0;
+	padding: var(--spacing-sm) 0;
 	color: var(--text-secondary);
 	display: flex;
 	align-items: center;
@@ -117,7 +120,7 @@ html.dark .list-post li .tags a:hover {
 .list-category div a {
 	margin: var(--spacing-xs) var(--spacing-sm);
 	white-space: nowrap;
-	font-size: 15px;
+	font-size: 14px;
 	display: inline-block;
 	border-bottom: 1px solid var(--text-tertiary);
 	padding: 2px 4px;
@@ -131,14 +134,14 @@ html.dark .list-post li .tags a:hover {
 
 .page-search #search-input {
 	text-align: center;
-	font-size: 16px;
-	border: 2px solid var(--border-color);
+	font-size: 15px;
+	border: 1px solid var(--border-color);
 	width: 100%;
 	padding: var(--spacing-md);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-sm);
 	background-color: var(--bg-secondary);
 	margin-bottom: var(--spacing-lg);
-	transition: all 0.3s ease;
+	transition: all 0.25s ease;
 }
 
 .page-search #search-input:focus {
@@ -153,7 +156,7 @@ html.dark .list-post li .tags a:hover {
 }
 
 .page-search h1 span {
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 700;
 	color: var(--text-secondary);
 }
@@ -169,12 +172,12 @@ html.dark .list-post li .tags a:hover {
 .page-search .list-search li {
 	list-style: disc;
 	margin-left: var(--spacing-md);
-	margin-bottom: var(--spacing-lg);
+	margin-bottom: var(--spacing-md);
 	transition: transform 0.2s ease;
 }
-
 .page-search .list-search li:hover {
-	transform: translateX(4px);
+	transform: translateX(3px);
+}
 }
 
 .page-search .list-search a {
@@ -186,7 +189,7 @@ html.dark .list-post li .tags a:hover {
 .page-search .list-search .title {
 	display: inline-block;
 	word-break: break-word;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 600;
 	padding-bottom: 1px;
 	color: var(--text-secondary);
@@ -195,7 +198,7 @@ html.dark .list-post li .tags a:hover {
 
 .page-search .list-search .content {
 	display: block;
-	font-size: 14px;
+	font-size: 13px;
 	color: var(--text-tertiary);
 	word-break: break-word;
 	padding: var(--spacing-sm) 0;
@@ -217,13 +220,13 @@ html.dark .list-post li .tags a:hover {
 }
 
 .page-index {
-	margin-top: var(--spacing-xl);
+	margin-top: 0;
 }
 
 @media screen and (max-width: 560px) {
 	.list-post > h2 {
-		padding: var(--spacing-sm) 0;
-		font-size: 16px;
+		padding: var(--spacing-xs) 0;
+		font-size: 15px;
 	}
 
 	.list-post ul {
@@ -231,13 +234,13 @@ html.dark .list-post li .tags a:hover {
 	}
 
 	.list-post li {
-		padding: var(--spacing-sm) 0;
+		padding: 8px 0;
 		flex-wrap: wrap;
 	}
 
 	.list-post li .date {
-		font-size: 13px;
-		margin-right: var(--spacing-md);
+		font-size: 12px;
+		margin-right: var(--spacing-sm);
 	}
 
 	.list-post li .title {
@@ -247,7 +250,7 @@ html.dark .list-post li .tags a:hover {
 	}
 
 	.list-post li .title a {
-		font-size: 16px;
+		font-size: 15px;
 		font-weight: 500;
 	}
 
@@ -256,11 +259,11 @@ html.dark .list-post li .tags a:hover {
 	}
 
 	.list-category h2 {
-		padding: var(--spacing-sm) 0;
+		padding: var(--spacing-xs) 0;
 	}
 
 	.list-category div a {
-		font-size: 14px;
+		font-size: 13px;
 		margin: var(--spacing-xs) var(--spacing-xs);
 	}
 }

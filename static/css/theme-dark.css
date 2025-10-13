@@ -1,15 +1,15 @@
 html.dark {
-	--primary-color: #60a5fa;
-	--text-color: #e2e8f0;
-	--text-secondary: #f8fafc;
-	--text-tertiary: #94a3b8;
-	--bg-color: #1e293b;
-	--bg-secondary: #0f172a;
-	--border-color: #334155;
-	--hover-color: #93c5fd;
-	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
-	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+	--primary-color: #5b8def;
+	--text-color: #d4d4d8;
+	--text-secondary: #e4e4e7;
+	--text-tertiary: #a1a1aa;
+	--bg-color: #18181b;
+	--bg-secondary: #0a0a0b;
+	--border-color: #27272a;
+	--hover-color: #7ba5f0;
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+	--shadow-md: 0 2px 4px rgba(0, 0, 0, 0.4);
+	--shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.5);
 
 	color: var(--text-color);
 	background: var(--bg-secondary);
@@ -17,7 +17,7 @@ html.dark {
 
 html.dark body {
 	background: var(--bg-color);
-	box-shadow: var(--shadow-md);
+	box-shadow: 0 0 0 1px var(--border-color);
 }
 
 html.dark ::selection {
@@ -35,7 +35,7 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 }
 
 html.dark img {
-	filter: brightness(0.9) contrast(1.1);
+	filter: brightness(0.85);
 	border: 1px solid var(--border-color);
 }
 
@@ -104,15 +104,15 @@ html.dark .page-post .post h2 {
 }
 
 html.dark .page-post img {
-	box-shadow: var(--shadow-md);
+	box-shadow: var(--shadow-sm);
 }
 
 html.dark .page-post img:hover {
-	box-shadow: var(--shadow-lg);
+	box-shadow: var(--shadow-md);
 }
 
 html.dark .page-post code {
-	background-color: rgba(96, 165, 250, 0.15);
+	background-color: rgba(91, 141, 239, 0.12);
 	color: var(--primary-color);
 }
 
@@ -136,13 +136,14 @@ html.dark .page-post b {
 }
 
 html.dark .page-post blockquote {
-	border-left: 4px solid var(--primary-color);
-	background-color: rgba(96, 165, 250, 0.1);
+	border-left: 3px solid var(--primary-color);
+	background-color: rgba(91, 141, 239, 0.08);
 	color: var(--text-color);
 }
 
 html.dark .page-post pre {
-	background-color: #1a2234;
+	background-color: #0f1419;
+	border: 1px solid var(--border-color);
 }
 
 html.dark .page-post .table-container {
@@ -181,7 +182,7 @@ html.dark .page-post iframe {
 
 html.dark .page-search #search-input {
 	color: var(--text-color);
-	border: 2px solid var(--border-color);
+	border: 1px solid var(--border-color);
 	background-color: var(--bg-secondary);
 }
 
@@ -194,7 +195,7 @@ html.dark .page-search .list-search .content {
 }
 
 html.dark #to-top {
-	opacity: 0.8;
+	opacity: 0.9;
 	background-color: var(--primary-color);
 }
 
