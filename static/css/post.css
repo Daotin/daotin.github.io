@@ -327,6 +327,22 @@
 	margin-top: 8px;
 	margin-bottom: 8px;
 }
+#markdown-toc ul,
+#markdown-toc ol {
+	list-style-type: disc;
+	padding-left: 1.25em;
+	counter-reset: initial;
+}
+
+#markdown-toc li {
+	position: static;
+	padding-left: 0;
+	counter-increment: initial;
+}
+
+#markdown-toc li::before {
+	content: none;
+}
 #markdown-toc {
 	position: fixed;
 	top: calc(var(--nav-height) + 48px);
