@@ -192,24 +192,140 @@
 	line-height: 1.7;
 }
 
-/* 目录悬浮在右边 */
-.page-post .post ul {
-	margin-left: var(--spacing-lg);
-	margin-bottom: var(--spacing-sm);
-}
+/* 列表样式 */
+.page-post .post ul,
 .page-post .post ol {
-	margin-left: calc(var(--spacing-lg) + 5px);
-	margin-bottom: var(--spacing-sm);
+	margin: var(--spacing-lg) 0;
+	padding-left: 1.5em;
 }
+
+.page-post .post ul {
+	list-style: none;
+}
+
+.page-post .post ol {
+	list-style: none;
+	counter-reset: list-counter;
+}
+
+/* 无序列表 - 多层级样式 */
 .page-post ul li {
-	list-style: disc outside;
-	margin-bottom: 6px;
+	position: relative;
+	margin-bottom: 8px;
 	line-height: 1.6;
+	padding-left: 1.75em;
 }
+
+.page-post ul li::before {
+	content: '';
+	position: absolute;
+	left: 0.5em;
+	top: 0.6em;
+	width: 6px;
+	height: 6px;
+	background-color: var(--primary-color);
+	border-radius: 50%;
+}
+
+/* 第二层级 - 空心圆点 */
+.page-post ul ul li::before {
+	background-color: transparent;
+	border: 2px solid var(--primary-color);
+	width: 6px;
+	height: 6px;
+	top: 0.55em;
+}
+
+/* 第三层级 - 实心方块 */
+.page-post ul ul ul li::before {
+	background-color: var(--primary-color);
+	border: none;
+	border-radius: 1px;
+	width: 5px;
+	height: 5px;
+	top: 0.6em;
+}
+
+/* 第四层级开始循环 - 实心圆点 */
+.page-post ul ul ul ul li::before {
+	background-color: var(--primary-color);
+	border: none;
+	border-radius: 50%;
+	width: 6px;
+	height: 6px;
+	top: 0.6em;
+}
+
+/* 第五层级 - 空心圆点 */
+.page-post ul ul ul ul ul li::before {
+	background-color: transparent;
+	border: 2px solid var(--primary-color);
+	width: 6px;
+	height: 6px;
+	top: 0.55em;
+}
+
+/* 第六层级 - 实心方块 */
+.page-post ul ul ul ul ul ul li::before {
+	background-color: var(--primary-color);
+	border: none;
+	border-radius: 1px;
+	width: 5px;
+	height: 5px;
+	top: 0.6em;
+}
+
+/* 有序列表 - 使用主题色 */
 .page-post ol li {
-	list-style: decimal outside;
-	margin-bottom: 6px;
+	position: relative;
+	margin-bottom: 8px;
 	line-height: 1.6;
+	padding-left: 1.75em;
+	counter-increment: list-counter;
+}
+
+.page-post ol li::before {
+	content: counter(list-counter) '.';
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: var(--primary-color);
+	font-weight: 600;
+	font-size: 0.95em;
+}
+
+/* 嵌套有序列表 - 不同的编号样式 */
+.page-post ol ol {
+	counter-reset: list-counter-sub;
+}
+
+.page-post ol ol li {
+	counter-increment: list-counter-sub;
+}
+
+.page-post ol ol li::before {
+	content: counter(list-counter-sub, lower-alpha) '.';
+}
+
+.page-post ol ol ol {
+	counter-reset: list-counter-sub2;
+}
+
+.page-post ol ol ol li {
+	counter-increment: list-counter-sub2;
+}
+
+.page-post ol ol ol li::before {
+	content: counter(list-counter-sub2, lower-roman) '.';
+}
+
+/* 列表嵌套间距 */
+.page-post .post ul ul,
+.page-post .post ul ol,
+.page-post .post ol ul,
+.page-post .post ol ol {
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 #markdown-toc {
 	position: fixed;

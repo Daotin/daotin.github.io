@@ -219,3 +219,34 @@ html.dark #markdown-toc a {
 html.dark #markdown-toc a:hover {
 	color: var(--primary-color);
 }
+
+/* 列表样式 - 暗色主题适配 */
+html.dark .page-post ul li::before {
+	background-color: var(--primary-color);
+}
+
+html.dark .page-post ul ul li::before {
+	background-color: transparent;
+	border-color: var(--primary-color);
+}
+
+html.dark .page-post ul ul ul li::before {
+	background-color: var(--primary-color);
+}
+
+html.dark .page-post ul ul ul ul li::before {
+	background-color: var(--primary-color);
+}
+
+html.dark .page-post ul ul ul ul ul li::before {
+	background-color: transparent;
+	border-color: var(--primary-color);
+}
+
+html.dark .page-post ul ul ul ul ul ul li::before {
+	background-color: var(--primary-color);
+}
+
+html.dark .page-post ol li::before {
+	color: var(--primary-color);
+}
