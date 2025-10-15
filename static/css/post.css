@@ -199,24 +199,24 @@
 	padding-left: 1.5em;
 }
 
-.page-post .post ul {
+.page-post .post ul:not(#markdown-toc) {
 	list-style: none;
 }
 
-.page-post .post ol {
+.page-post .post ol:not(#markdown-toc) {
 	list-style: none;
 	counter-reset: list-counter;
 }
 
 /* 无序列表 - 多层级样式 */
-.page-post ul li {
+.page-post .post ul:not(#markdown-toc) li {
 	position: relative;
 	margin-bottom: 8px;
 	line-height: 1.6;
 	padding-left: 1.75em;
 }
 
-.page-post ul li::before {
+.page-post .post ul:not(#markdown-toc) li::before {
 	content: '';
 	position: absolute;
 	left: 0.5em;
@@ -230,9 +230,9 @@
 /* 第二层级 - 空心圆点 */
 .page-post ul ul li::before {
 	background-color: transparent;
-	border: 2px solid var(--primary-color);
-	width: 6px;
-	height: 6px;
+	border: 1px solid var(--primary-color);
+	width: 4px;
+	height: 4px;
 	top: 0.55em;
 }
 
@@ -259,9 +259,9 @@
 /* 第五层级 - 空心圆点 */
 .page-post ul ul ul ul ul li::before {
 	background-color: transparent;
-	border: 2px solid var(--primary-color);
-	width: 6px;
-	height: 6px;
+	border: 1px solid var(--primary-color);
+	width: 4px;
+	height: 4px;
 	top: 0.55em;
 }
 
@@ -276,7 +276,7 @@
 }
 
 /* 有序列表 - 使用主题色 */
-.page-post ol li {
+.page-post .post ol:not(#markdown-toc) li {
 	position: relative;
 	margin-bottom: 8px;
 	line-height: 1.6;
@@ -284,7 +284,7 @@
 	counter-increment: list-counter;
 }
 
-.page-post ol li::before {
+.page-post .post ol:not(#markdown-toc) li::before {
 	content: counter(list-counter) '.';
 	position: absolute;
 	left: 0;
