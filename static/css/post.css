@@ -230,9 +230,9 @@
 /* 第二层级 - 空心圆点 */
 .page-post ul ul li::before {
 	background-color: transparent;
-	border: 2px solid var(--primary-color);
-	width: 6px;
-	height: 6px;
+	border: 1px solid var(--primary-color);
+	width: 4px;
+	height: 4px;
 	top: 0.55em;
 }
 
@@ -259,9 +259,9 @@
 /* 第五层级 - 空心圆点 */
 .page-post ul ul ul ul ul li::before {
 	background-color: transparent;
-	border: 2px solid var(--primary-color);
-	width: 6px;
-	height: 6px;
+	border: 1px solid var(--primary-color);
+	width: 4px;
+	height: 4px;
 	top: 0.55em;
 }
 
