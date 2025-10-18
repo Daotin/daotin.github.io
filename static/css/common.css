@@ -76,6 +76,7 @@ html {
 		'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
 	font-size: 16px;
 	line-height: 1.6;
+	text-autospace: normal;
 }
 
 body {
