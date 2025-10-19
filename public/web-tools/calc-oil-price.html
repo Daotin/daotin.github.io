@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>油费计算器</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        --bg: linear-gradient(135deg, #edf1f8, #e4f2ff);
+        --card-bg: rgba(255, 255, 255, 0.88);
+        --card-shadow: 0 25px 60px -25px rgba(33, 56, 85, 0.35);
+        --accent: #3a7bd5;
+        --accent-dark: #1b55a0;
+        --text-primary: #112240;
+        --text-muted: #52607a;
+        --invalid: #e05656;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg);
+        color: var(--text-primary);
+      }
+
+      .wrapper {
+        width: min(92vw, 540px);
+        background: var(--card-bg);
+        border-radius: 24px;
+        padding: 32px clamp(24px, 4vw, 40px);
+        box-shadow: var(--card-shadow);
+        backdrop-filter: blur(16px);
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(28px, 5vw, 36px);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      header p {
+        margin: 0;
+        font-size: 16px;
+        color: var(--text-muted);
+      }
+
+      form {
+        display: grid;
+        gap: 20px;
+      }
+
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--text-muted);
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      input {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(58, 123, 213, 0.16);
+        background: rgba(255, 255, 255, 0.72);
+        font-size: 16px;
+        transition: border 0.2s ease, box-shadow 0.2s ease;
+        outline: none;
+      }
+
+      input:focus {
+        border-color: rgba(58, 123, 213, 0.4);
+        box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.15);
+      }
+
+      input[data-invalid="true"] {
+        border-color: rgba(224, 86, 86, 0.6);
+        box-shadow: 0 0 0 4px rgba(224, 86, 86, 0.15);
+      }
+
+      .result-card {
+        margin-top: 12px;
+        padding: 24px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #3a7bd5, #3a6073);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .result-label {
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+
+      .result-value {
+        font-size: clamp(32px, 6vw, 48px);
+        font-weight: 700;
+      }
+
+      .hint {
+        margin-top: 12px;
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      @media (max-width: 540px) {
+        .wrapper {
+          padding: 28px clamp(18px, 6vw, 30px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrapper" aria-labelledby="title">
+      <header>
+        <h1 id="title">油费计算器</h1>
+        <p>输入油价、行驶距离和百公里油耗即可快速估算出本次行程的油费。</p>
+      </header>
+
+      <form aria-describedby="helper">
+        <div>
+          <label for="price">当前油价 (元/升)</label>
+          <input
+            id="price"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="例如：8.25"
+            autocomplete="off"
+            inputmode="decimal"
+          />
+        </div>
+
+        <div>
+          <label for="distance">行驶距离 (公里)</label>
+          <input
+            id="distance"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="例如：120"
+            autocomplete="off"
+            inputmode="decimal"
+          />
+        </div>
+
+        <div>
+          <label for="consumption">百公里油耗 (升)</label>
+          <input
+            id="consumption"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="例如：8.0"
+            autocomplete="off"
+            inputmode="decimal"
+          />
+        </div>
+      </form>
+
+      <section class="result-card" aria-live="polite">
+        <span class="result-label">预计油费</span>
+        <span id="result" class="result-value">¥0.00</span>
+      </section>
+
+      <p id="helper" class="hint">
+        油费计算公式：油价 × 行驶距离 × (百公里油耗 ÷ 100)。请确保每个数值为非负数。
+      </p>
+    </main>
+
+    <script>
+      const inputs = document.querySelectorAll("input");
+      const resultElement = document.getElementById("result");
+
+      const formatCurrency = (value) => {
+        if (!Number.isFinite(value)) return "¥0.00";
+        return `¥${value.toFixed(2)}`;
+      };
+
+      const validate = (value) => {
+        return value !== "" && Number(value) >= 0;
+      };
+
+      const recalc = () => {
+        const priceInput = document.getElementById("price");
+        const distanceInput = document.getElementById("distance");
+        const consumptionInput = document.getElementById("consumption");
+
+        const rawValues = [
+          priceInput.value.trim(),
+          distanceInput.value.trim(),
+          consumptionInput.value.trim(),
+        ];
+
+        const isReady = rawValues.every((value) => validate(value));
+
+        if (!isReady) {
+          resultElement.textContent = "¥0.00";
+          return;
+        }
+
+        const price = Number(rawValues[0]);
+        const distance = Number(rawValues[1]);
+        const perHundredKmConsumption = Number(rawValues[2]);
+        const perKmConsumption = perHundredKmConsumption / 100;
+
+        const totalCost = price * distance * perKmConsumption;
+        resultElement.textContent = formatCurrency(totalCost);
+      };
+
+      inputs.forEach((input) => {
+        input.addEventListener("input", () => {
+          const isValid = validate(input.value);
+          input.dataset.invalid = isValid ? "false" : "true";
+          recalc();
+        });
+        input.dataset.invalid = "false";
+      });
+
+      recalc();
+    </script>
+  </body>
+</html>
