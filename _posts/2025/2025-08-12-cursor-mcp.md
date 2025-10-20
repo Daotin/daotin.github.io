@@ -5,17 +5,19 @@ tags: [AI前端]
 ---
 
 1. 目录
-   {:toc}
+{:toc}
 
-效果展示：
+## 效果展示
 
 ![](/image/2025/mcp1.png)
+
 ![](/image/2025/mcp2.png)
+
 ![](/image/2025/mcp3.png)
 
-工作原理：
+## 工作原理
 
-### MCP 是如何实现的？
+MCP 是如何实现的？
 
 这个项目的核心是**模型上下文协议 (Model Context Protocol, MCP)**。它并不是自己实现了一套新的协议，而是使用了 `@modelcontextprotocol/sdk` 这个关键的依赖库。
 

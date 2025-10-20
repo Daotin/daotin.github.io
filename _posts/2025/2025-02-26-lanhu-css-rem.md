@@ -4,9 +4,6 @@ title: 蓝湖CSS REM如何填写？
 tags: [前端]
 ---
 
-1. 目录
-{:toc}
-
 > [!WARNING]
 > 一下是非标准的H5适配方案。
 
