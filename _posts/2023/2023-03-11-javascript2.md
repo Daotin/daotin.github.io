@@ -270,3 +270,83 @@ sendRequest(urls, 3, () => {
   console.log('所有请求已完成');
 });
 ```
+
+---
+
+另一个并发控制思路：
+
+并发控制原理：
+
+1. 创建task，每个task返回的是一个Promise 函数
+2. 创建MAX个task形成任务池
+3. 创建一个runTask函数，从任务池中取出MAX个task并发，每个task在执行完后继续取下一个task执行，直到任务池为空
+4. 使用一个共享的index变量，确保每个task取到的任务是唯一的，并可以判断任务池是否为空
+5. 使用Promise.all等待所有task执行完毕
+
+```js
+/**
+ * 并发控制函数
+ * @param {Function[]} tasks - 存放 Promise 工厂函数的数组
+ * @param {number} max - 最大并发量
+ * @returns {Promise<any[]>} - 所有任务执行的结果（保持顺序）
+ */
+function concurrentRun(tasks, max) {
+  const results = []; // 存储结果
+  let index = 0; // 共享的索引，用于取出下一个任务
+
+  // 递归执行任务的函数 (Worker)
+  async function runTask() {
+    // 如果索引超出了任务长度，说明没任务了，直接返回
+    if (index >= tasks.length) return;
+
+    // 1. 取出当前索引，并将全局索引 +1 (原子操作)
+    const i = index++;
+    const task = tasks[i];
+
+    try {
+      // 2. 执行任务，并保存结果到对应位置
+      results[i] = await task();
+    } catch (err) {
+      // 捕获错误，防止整个 Promise.all 崩溃
+      results[i] = err;
+    }
+
+    // 3. 当前任务完成后，递归调用自身，去取下一个任务
+    await runTask();
+  }
+
+  // 4. 创建 max 个并发“线程” (如果任务少于 max，则只创建任务数量个)
+  const workers = Array.from({ length: Math.min(tasks.length, max) }, () => runTask());
+
+  // 5. 等待所有 worker 执行完毕
+  return Promise.all(workers).then(() => results);
+}
+
+// ---以下是测试代码---
+
+// 模拟一个异步请求：随机 1-3 秒返回
+// 注意：tasks 数组里存放的必须是 Promise 工厂函数（即返回 Promise 的函数），而不是已经创建好的 Promise 对象。如果是 Promise 对象，它们在创建时就已经开始请求了，无法实现并发控制。
+const createRequest = (id) => () =>
+  new Promise((resolve) => {
+    const time = 1000 + Math.random() * 2000;
+    console.log(`开始任务: ${id}`);
+    setTimeout(() => {
+      console.log(`-- 完成任务: ${id} (耗时 ${(time / 1000).toFixed(1)}s)`);
+      resolve(`Result ${id}`);
+    }, time);
+  });
+
+// 生成 10 个任务
+const tasks = Array.from({ length: 10 }, (_, i) => createRequest(i + 1));
+
+// 执行并发：最大并发数为 3
+console.log(`准备执行 10 个任务，最大并发 3...`);
+concurrentRun(tasks, 3).then((data) => {
+  console.log('所有任务完成:', data);
+});
+
+
+```
+还可以继续完善，比如增加错误重试等。
+
+
