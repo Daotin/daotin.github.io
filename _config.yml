@@ -32,13 +32,15 @@ menu:
   - title: 标签
     url: /pages/tags.html
   - title: 专栏
-    url: /pages/column.html
+    url: https://github.com/Daotin/obsidian-notes
+    target: '_blank'
   - title: 项目
     url: /pages/project.html
   - title: 搜索
     url: /pages/search.html
   - title: 留言板
-    url: /pages/chat.html
+    url: https://github.com/Daotin/Daotin/discussions/2
+    target: '_blank'
 
 # 点击页面文字冒出特效,不需要请设置为false
 extClickEffect: false
@@ -88,4 +90,3 @@ links:
   #   url: https://wenn.tech
   # - title: Congbo's Blog
   #   url: https://congbo.site
-
