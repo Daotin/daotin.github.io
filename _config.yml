@@ -31,10 +31,12 @@ menu:
     url: /
   - title: 标签
     url: /pages/tags.html
+  - title: 专栏
+    url: /pages/column.html
+  - title: 项目
+    url: /pages/project.html
   - title: 搜索
     url: /pages/search.html
-  - title: 关于我
-    url: /pages/project.html
   - title: 留言板
     url: /pages/chat.html
 
@@ -86,3 +88,4 @@ links:
   #   url: https://wenn.tech
   # - title: Congbo's Blog
   #   url: https://congbo.site
+
